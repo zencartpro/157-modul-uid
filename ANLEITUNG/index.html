@@ -18,7 +18,7 @@
 <div id="slidetabsmenu" style="display: none;">
 <ul>
   <li> <a onClick="expandcontent('sc1', this)" href="javascript:void(0)"><span>Sinn und Zweck</span></a></li>
-  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Installation</span></a></li>
+  <li> <a onClick="expandcontent('sc2', this)" href="javascript:void(0)"><span>Neuinstallation</span></a></li>
   <li> <a onClick="expandcontent('sc7', this)" href="javascript:void(0)"><span>Update von 2.x</span></a></li>
    <li> <a onClick="expandcontent('sc4', this)" href="javascript:void(0)"><span>Deinstallation</span></a></li>
   <li> <a onClick="expandcontent('sc5', this)" href="javascript:void(0)"><span>Download</span></a></li>
@@ -58,6 +58,10 @@
     <br>
     Hinweis:<br>
     Die Überprüfung bei VIES wird via SOAP durchgeführt. Stellen Sie daher sicher, dass in Ihrer PHP Konfiguration die SOAP Extension aktiv ist.<br>
+    Bevor Sie dieses Modul installieren prüfen Sie in Ihrer Zen Cart Administration unter Tools &gt; Serverinfo ob es einen Eintrag soap gibt mit Soap Client enabled.<br>
+    Fehlt dieser Eintrag oder Soap Client ist disabled, aktvieren Sie die soap extension in Ihrer php.ini oder wenden Sie sich an Ihren Provider, falls Sie auf sokche Einstellungen keinen Zugriff haben.<br>
+    Dieses Modul funktioniert nur mit Soap Client enabled!
+    <br>
   </p>
 <h3>Copyright, Changelog, Lizenz</h3>
 <p>Anpassung des Moduls <a href="https://github.com/lat9/vat4eu" target="_blank">VAT Processing for European Countries (Vat4EU) </a> von lat9 für die deutsche Zen Cart Version 1.5.7<br>
@@ -73,7 +77,8 @@
   * Zusatzeinstellung für eigene Shop UID<br>
   * Konfig &quot;VAT Refund for in-country purchases&quot; entfernt<br>
   * Ausgabe des Hinweistextes im Format <span id="vat-reverse-charge">steuerfreie innergemeinschaftliche Lieferung | Unsere UID: ATU1234567 | Ihre UID: DE1234567</span> <br>
-  * Integration einer Konvertierungsmöglichkeit für die bereits vom früheren Modul hinterlegten UIDs</p>
+  * Integration einer Konvertierungsmöglichkeit für die bereits vom früheren Modul hinterlegten UIDs<br>
+  * Anleitung aktualisiert</p>
 <p>This contribution is subject to version 3.0 of the GPL license available through the world-wide-web at the following url:<br>
   <a href="http://www.zen-cart-pro.at/license/3_0.txt">http://www.zen-cart-pro.at/license/3_0.txt</a></p>
 </div>
@@ -86,7 +91,7 @@
 <div class="textcontent">
 <div class="regularlist">
 
-<h2>Installation</h2>
+<h2>Neuinstallation</h2>
 <h3>Voraussetzungen</h3>
   <br>
   Dieses Modul ist<strong> nur für die deutsche Zen Cart 1.5.7 Version geeignet</strong></p>
@@ -167,11 +172,53 @@ In der Zen Cart Administration auf irgendeinen Menüpunkt clicken. Sie sollten o
 
 <h2>UPDATE VON ÄLTEREN VERSIONEN DIESES MODULS</h2>
 <p>
- Falls Sie dieses Modul in Version 2.7.3 und älter bereits in Ihrem Zen Cart 1.5.6 Shop verwendet haben und nun auf Zen Cart 1.5.7 aktualisiert haben, dann können Sie ihre bereits hinterlegten UIDs weiterverwenden, indem Sie sie mit dem beiliegenden Konvertierungsscript in die neue Datenbankstruktur übernehmen</p>
-<p>Konvertierungsscript und Anleitung dazu sind noch nicht enthalten, werden noch ergänzt</p>
-
-
-
+ Falls Sie dieses Modul in Version 2.7.3 und älter bereits in Ihrem Zen Cart 1.5.6 Shop verwendet haben und nun auf Zen Cart 1.5.7 aktualisiert haben, dann können Sie ihre bereits hinterlegten UIDs weiterverwenden, indem Sie sie in die neue Datenbankstruktur übernehmen</p>
+<p>Eine Anleitung dazu finden Sie in der Datei anleitung.txt im Ordner UID DATENUEBERNAHME AUS ALTEM MODUL.</p>
+<p><strong>WICHTIG:<br/>Bevor Sie diese Konvertierung durchführen installieren Sie zunächst ganz normal wie unter Neuinstallation beschrieben das Modul UID 3.1.1 für Zen Cart 1.5.7 deutsch in Ihrem bereits auf 1.5.7 aktualisierten Shop!</strong></p>
+<p>Sie haben also bereits einen funktionierenden auf 1.5.7 aktualisierten Shop mit dem neuen UID Modul 3.1.1. Nur unter Kunden > Kunden sind keinerlei bestehende UIDs vorhanden.</p>
+<p>Und die übernehmen Sie nun wie in der anleitung.txt beschrieben.</p>
+<p>Prüfen Sie auch, ob in Ihrer Shopinstallation noch irgendwo Relikte des alten Moduls sind, folgende Dateien sollten keinesfalls mehr vorhanden sein, falls sie vorhanden sind vom Server löschen:<br>
+  <br>
+  DEINADMIN/includes/auto_loaders/config.uid.php<br>
+  DEINADMIN/includes/functions/extra_functions/functions_vatmod.php <br>
+  DEINADMIN/includes/init_includes/init_uid.php<br>
+  DEINADMIN/includes/installers/uid (gesamter Ordner)<br>
+DEINADMIN/includes/languages/german/extra_definitions/products_uid.php <br>
+DEINADMIN/includes/languages/german/extra_definitions/uid.php<br>
+DEINADMIN/includes/languages/english/extra_definitions/products_uid.php <br>
+DEINADMIN/includes/languages/english/extra_definitions/uid.php<br>
+includes/functions/extra_functions/functions_vatmod.php<br>
+includes/languages/german/extra_definitions/uid.php<br>
+includes/languages/german/extra_definitions/vatmod.php<br>
+includes/languages/english/extra_definitions/uid.php<br>
+includes/languages/english/extra_definitions/vatmod.php<br>
+<br>
+Beachten Sie bitte auch, dass das neue Modul lediglich Änderungen in 4 bestehenden Dateien vornimmt:<br>
+includes/classes/class.rl_invoice3.php<br>
+includes/templates/DEINTEMPLATE/templates/tpl_modules_address_book_details.php<br>
+includes/templates/DEINTEMPLATE/templates/tpl_modules_checkout_new_address.php<br>
+includes/templates/DEINTEMPLATE/templates/tpl_modules_create_account.php<br>
+<br>
+Das alte Modul hat sehr viele Dateien geändert, diese alten Dateiänderungen dürfen in Ihrem 1.5.7 Shop keinesfalls mehr vorhanden sein!
+<br>
+Wenn Sie sich unsicher sind, laden Sie sich die alte Version 2.7.3 des UID Moduls für 1.5.6 herunter, dort finden Sie nochmal ausführlich beschrieben, welche Dateien dieses Modul früher mal geändert hat und wie diese Änderungen ausgesehen haben.<br>
+Download des alten Moduls:
+<br>
+<a href="https://www.zen-cart-pro.at/knowledgebase/uid-fuer-zen-cart-1-5-6-deutsch/" target="_blank">https://www.zen-cart-pro.at/knowledgebase/uid-fuer-zen-cart-1-5-6-deutsch/</a><br>
+<br>
+ Folgende Befehle sollten Sie nun noch unter Tools &gt; SQL Patches installieren absenden, um die alten Datenbankkonfigurationseinträge des alten Moduls noch zu entfernen:<br>
+<br>
+DELETE FROM configuration WHERE configuration_key = 'ENTRY_TVA_INTRACOM_CHECK';<br>
+DELETE FROM configuration WHERE configuration_key = 'TVA_SHOP_INTRACOM';<br>
+DELETE FROM configuration WHERE configuration_key = 'UID_MODUL_VERSION';<br>
+DELETE FROM configuration WHERE configuration_key = 'ENTRY_TVA_INTRACOM_MIN_LENGTH';<br>
+DELETE FROM configuration_language WHERE configuration_key = 'ENTRY_TVA_INTRACOM_CHECK';<br>
+DELETE FROM configuration_language WHERE configuration_key = 'TVA_SHOP_INTRACOM';<br>
+DELETE FROM configuration_language WHERE configuration_key = 'ENTRY_TVA_INTRACOM_MIN_LENGTH';<br>
+DELETE FROM configuration_group WHERE configuration_group_title LIKE 'UID';<br>
+DELETE FROM admin_pages WHERE page_key='configProdUID'; </p>
+<p><br>
+</p>
 </div>
 </div>
 </div>

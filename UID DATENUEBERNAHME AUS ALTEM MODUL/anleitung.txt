@@ -1,0 +1,69 @@
+Nachdem Sie das UID Modul 3.1.1 für Zen Cart 1.5.7 gemäß Installationsanleitung installiert haben, können Sie nun noch Ihre bestehenden UIDs aus dem alten UID Modul in die neue Struktur übernehmen.
+Ihre Datenbank enthält ja diese Daten noch aus der Verwendung des alten Moduls mit Zen Cart 1.5.6 und älter.
+
+
+Durchführung:
+
+Die folgenden Schritte führen Sie in phpMyAdmin aus.
+Rufen Sie phpMyAdmin auf und wechseln Sie in die Datenbank Ihres Shops.
+
+Machen Sie nun zunächst eine komplette Sicherung der Datenbank
+
+Sicherung gemacht?
+
+Dann führen Sie nun nacheinander die folgenden 4 Schritte aus und kopieren die jeweiligen Befehle ins Eingabefeld unter SQL und bestätigen dann mit OK
+
+Schritt 1:
+
+UPDATE address_book SET entry_vat_number = entry_tva_intracom WHERE entry_tva_intracom != '';
+
+Reinkopieren und mit OK bestätigen
+
+
+Schritt 2:
+
+UPDATE address_book SET entry_vat_validated = '1' WHERE entry_vat_number != '';
+
+Hinweis:
+Durch diesen Befehl werden alle bestehenden UIDs auf verifiziert gesetzt. Sie vertrauen also den bestehenden UID Nummern.
+Wenn Sie den bestehenden UID Nummern nicht vertrauen und Sie sie später vom Modul erneut prüfen lassen wollen, dann ändern Sie im Befehl auf entry_vat_validated = '0'
+
+Reinkopieren und mit OK bestätigen
+
+
+Schritt 3:
+
+UPDATE orders SET billing_vat_number = billing_tva_intracom WHERE billing_tva_intracom != '';
+
+Reinkopieren und mit OK bestätigen
+
+
+Schritt 4:
+
+UPDATE orders SET billing_vat_validated = '1' WHERE billing_vat_number != '';
+
+Reinkopieren und mit OK bestätigen
+
+
+Schritt 5:
+
+Prüfen Sie nun in phpMyAdmin ob die Daten korrekt übernommen wurden.
+Jede Zeile in der tabelle address_book mit hinterlegtem Eintrag bei entry_tva_intracom sollte nun in der Spalte entry_vat_number dieselbe UID haben und in der Spalte entry_vat_validated eine 1
+Jede Zeile in der Tabelle orders mit hinterlegtem Eintrag billing_tva_intracom sollte nun in der Spalte billing_vat_number dieselbe UID haben und in der Spalte billing_vat_validated eine 1
+
+Prüfen Sie nun noch in der Shopadministration unter Kunden > Kunden ob die UIDs bei Ihren Kunden ersichtlich und mit grünem validated Hinweis versehen sind.
+
+Alles korrekt?
+
+Schritt 6:
+
+Dann können Sie nun in einem letzten Schritt die alten Felder entry_tva_intracom und billing_tva_intracom aus der Datenbank löschen, da sie nun nicht mehr benötigt und nicht mehr verwendet werden.
+
+Führen Sie dazu nochmals via phpMyAdmin folgende beiden Befehle aus:
+
+ALTER TABLE address_book DROP COLUMN entry_tva_intracom;
+ALTER TABLE orders DROP COLUMN billing_tva_intracom;
+
+Fertig
+
+Sie haben erfolgreich auf das neue UID Modul umgestellt und dabei ihre UID Daten behalten.

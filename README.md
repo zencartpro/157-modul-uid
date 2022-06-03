@@ -25,6 +25,9 @@ steuerfreie innergemeinschaftliche Lieferung | Unsere UID: ATU1234567 | Ihre UID
 
 * Hinweis:
 Die Überprüfung bei VIES wird via SOAP durchgeführt. Stellen Sie daher sicher, dass in Ihrer PHP Konfiguration die SOAP Extension aktiv ist.
+Bevor Sie dieses Modul installieren prüfen Sie in Ihrer Zen Cart Administration unter Tools > Serverinfo ob es einen Eintrag soap gibt mit Soap Client enabled.
+Fehlt dieser Eintrag oder Soap Client ist disabled, aktvieren Sie die soap extension in Ihrer php.ini oder wenden Sie sich an Ihren Provider falls Sie auf solche Einstellungen keinen Zugriff haben.
+Dieses Modul funktioniert nur mit Soap Client enabled! 
 
 Changelog Version 3.1.1:
 * 2022-06-03 webchills 
