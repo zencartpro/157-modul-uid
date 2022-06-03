@@ -35,6 +35,6 @@ Changelog Version 3.1.1:
 * Anpassung des Installers für die deutsche Zen Cart Version
 * Verwendung der ohnehin in der deutschen Zen Cart Version vorhandenen EU Länderliste
 * Zusatzeinstellung für eigene Shop UID
-* Konfig "VAT Refund for in-country purchases" entfernt
+* Konfig und Funktionalität "VAT Refund for in-country purchases" entfernt
 * Ausgabe des Hinweistextes im Format steuerfreie innergemeinschaftliche Lieferung | Unsere UID: ATU1234567 | Ihre UID: DE1234567 
 * Integration einer Konvertierungsmöglichkeit für die bereits vom früheren Modul 2.x hinterlegten UIDs
