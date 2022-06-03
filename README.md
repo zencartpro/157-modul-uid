@@ -5,7 +5,7 @@ Hinweis:
 Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlich unter Releases herunterladen:
 * https://github.com/zencartpro/157-modul-uid/releases
 
-* Dieses Modul erweitert die Kundendaten mit einem Feld für die UID für Firmenkunden innerhalb der EU.
+Dieses Modul erweitert die Kundendaten mit einem Feld für die UID für Firmenkunden innerhalb der EU.
 Die UID wird bei der Registrierung und bei der Bearbeitung in der Administration online überprüft am System VIES
 Firmen mit gültiger UID aus EU-Ländern außerhalb des Shoplandes werden dann im Shop bei einer Bestellung die Steuern sofort rückerstattet. 
 Der Status der Überprüfung ist bei jedem Kunden mit UID in der Shopadministration ersichtlich.
