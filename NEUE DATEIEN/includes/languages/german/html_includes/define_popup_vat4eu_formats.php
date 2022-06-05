@@ -1,163 +1,165 @@
-<h1>VAT Identification Number Structure</h1>
-<p>These characters are used in the <em>Structure</em> column of the table below to illustrate the format required for the various <em>Member States</em>:
+<p>Die Eingabe Ihrer UID ist nur dann sinnvoll, wenn Ihre Firma sich in einem EU-Land außerhalb des Landes unseres Shops befindet.</p>
+<p>Kunden mit gültiger UID werden dann von unserem Shop bei einer Bestellung automatisch die Steuern wieder abgezogen.</p>
+<h1>Struktur der Umsatzsteuer-Identifikationsnummer</h1>
+<p>Diese Zeichen werden in der Spalte <em>Struktur</em> der folgenden Tabelle verwendet, um das für die verschiedenen <em>Mitgliedstaaten</em> erforderliche Format zu veranschaulichen:
 <ul>
-    <li>The <em>Format</em> excludes the 2-letter alpha prefix</li>
-    <li><b>9</b>: A digit</li>
-    <li><b>X</b>: A letter or a digit</li>
-    <li><b>S</b>: A letter, a digit, <b>+</b> or <b>*</b></li>
-    <li><b>L</b>: A letter</li>
+    <li>Das <em>Format</em> schließt das 2-Buchstaben-Alpha-Präfix aus</li>
+    <li><b>9</b>: Eine Ziffer</li>
+    <li><b>X</b>: Ein Buchstabe oder eine Ziffer</li>
+    <li><b>S</b>: Ein Buchstabe, eine Ziffer, <b>+</b> oder <b>*</b></li>
+    <li><b>L</b>: Ein Buchstabe</li>
 </ul>
 
 <table>
     <tr>
-        <th>Member State</th>
-        <th>Structure</th>
+        <th>Mitgliedsstaat</th>
+        <th>Gliederung</th>
         <th>Format<sup>*</sup></th>
     </tr>
     <tr>
-        <td>AT-Austria</td>
+        <td>AT-Österreich</td>
         <td>ATU99999999</td>
-        <td>1 block of 9 characters</td>
+        <td>1 Block mit 9 Zeichen</td>
     </tr>
     <tr>
-        <td>BE-Belgium</td>
+        <td>BE-Belgien</td>
         <td>BE0999999999</td>
-        <td>1 block of 10 digits</td>
+        <td>1 Block mit 10 Ziffern</td>
     </tr>
     <tr>
-        <td>BG-Bulgaria</td>
-        <td>BG999999999 or<br />BG9999999999</td>
-        <td>1 block of 9 digits or<br />1 block of 10 digits</td>
+        <td>BG-Bulgarien</td>
+        <td>BG999999999 oder<br />BG9999999999</td>
+        <td>1 Block mit 9 Ziffern oder<br />1 Block mit 10 Ziffern</td>
     </tr>
     <tr>
-        <td>CY-Cyprus</td>
+        <td>CY-Zypern</td>
         <td>CY99999999L</td>
-        <td>1 block of 9 characters</td>
+        <td>1 Block mit 9 Zeichen</td>
     </tr>
     <tr>
-        <td>CZ-Czech Republic</td>
-        <td>CZ99999999 or<br />CZ999999999 or<br />CZ9999999999</td>
-        <td>1 block of either 8, 9 or 10 digits</td>
+        <td>CZ-Tschechien</td>
+        <td>CZ99999999 oder<br />CZ999999999 oder<br />CZ9999999999</td>
+        <td>1 Block mit entweder 8, 9 oder 10 Ziffern</td>
     </tr>
     <tr>
-        <td>DE-Germany</td>
+        <td>DE-Deutschland</td>
         <td>DE999999999</td>
-        <td>1 block of 9 digits</td>
+        <td>1 Block mit 9 Ziffern</td>
     </tr>
     <tr>
-        <td>DK-Denmark</td>
+        <td>DK-Dänemark</td>
         <td>DK99 99 99 99</td>
-        <td>4 blocks of 2 digits</td>
+        <td>4 Blöcke mit 2 Ziffern</td>
     </tr>
     <tr>
-        <td>EE-Estonia</td>
+        <td>EE-Estland</td>
         <td>EE999999999</td>
-        <td>1 block of 9 digits</td>
+        <td>1 Block mit 9 Ziffern</td>
     </tr>
     <tr>
-        <td>EL-Greece</td>
+        <td>GR-Griechenland</td>
         <td>EL999999999</td>
-        <td>1 block of 9 digits</td>
+        <td>1 Block mit 9 Ziffern</td>
     </tr>
     <tr>
-        <td>ES-Spain</td>
+        <td>ES-Spanien</td>
         <td>ESX9999999X<sup>4</sup></td>
-        <td>1 block of 9 characters</td>
+        <td>1 Block mit 9 Zeichen</td>
     </tr>
     <tr>
-        <td>FI-Finland</td>
+        <td>FI-Finnland</td>
         <td>FI99999999</td>
-        <td>1 block of 8 digits</td>
+        <td>1 Block mit 8 Ziffern</td>
     </tr>
     <tr>
-        <td>FR-France</td>
+        <td>FR-Frankreich</td>
         <td>FRXX 999999999</td>
-        <td>1 block of 2 characters, 1 block of 9 digits</td>
+        <td>1 Block mit 2 Zeichen, 1 Block mit 9 Ziffern</td>
     </tr>
     <tr>
-        <td>HR-Croatia</td>
+        <td>HR-Kroatien</td>
         <td>HR99999999999</td>
-        <td>1 block of 11 digits</td>
+        <td>1 Block mit 11 Ziffern</td>
     </tr>
     <tr>
-        <td>HU-Hungary</td>
+        <td>HU-Ungarn</td>
         <td>HU99999999</td>
-        <td>1 block of 8 digits</td>
+        <td>1 Block mit 8 Ziffern</td>
     </tr>
     <tr>
-        <td>IE-Ireland</td>
+        <td>IE-Irland</td>
         <td>IE9S99999L<br />IE9999999WI</td>
-        <td>1 block of 8 characters or<br />1 block of 9 characters</td>
+        <td>1 Block mit 8 Zeichen oder<br />1 Block mit 9 Zeichen</td>
     </tr>
     <tr>
-        <td>IT-Italy</td>
+        <td>IT-Italien</td>
         <td>IT99999999999</td>
-        <td>1 block of 11 digits</td>
+        <td>1 Block mit 11 Ziffern</td>
     </tr>
     <tr>
-        <td>LT-Lithuania</td>
-        <td>LT999999999 or<br />LT999999999999</td>
-        <td>1 block of 9 digits or<br />1 block of 12 digits</td>
+        <td>LT-Litauen</td>
+        <td>LT999999999 oder<br />LT999999999999</td>
+        <td>1 Block mit 9 Ziffern oder<br />1 Block mit 12 Ziffern</td>
     </tr>
     <tr>
-        <td>LU-Luxembourg</td>
+        <td>LU-Luxemburg</td>
         <td>LU99999999</td>
-        <td>1 block of 8 digits</td>
+        <td>1 Block mit 8 Ziffern</td>
     </tr>
     <tr>
-        <td>LV-Latvia</td>
+        <td>LV-Lettland</td>
         <td>LV99999999999</td>
-        <td>1 block of 11 digits</td>
+        <td>1 Block mit 11 Ziffern</td>
     </tr>
     <tr>
         <td>MT-Malta</td>
         <td>MT99999999</td>
-        <td>1 block of 8 digits</td>
+        <td>1 Block mit 8 Ziffern</td>
     </tr>
     <tr>
-        <td>NL-The Netherlands</td>
+        <td>NL-Niederlande</td>
         <td>NL999999999<b>B</b>99<sup>8</sup></td>
-        <td>1 block of 12 characters</td>
+        <td>1 Block mit 12 Zeichen</td>
     </tr>
     <tr>
-        <td>PL-Poland</td>
+        <td>PL-Polen</td>
         <td>PL9999999999</td>
-        <td>1 block of 10 digits</td>
+        <td>1 Block mit 10 Ziffern</td>
     </tr>
     <tr>
         <td>PT-Portugal</td>
         <td>PT999999999</td>
-        <td>1 block of 9 digits</td>
+        <td>1 Block mit 9 Ziffern</td>
     </tr>
     <tr>
-        <td>RO-Romania</td>
-        <td>RO999999999</td>
-        <td>1 block of minimum 2 digits and maximum 10 digits</td>
+        <td>RO-Rumänien</td>
+        <td>RO9999999</td>
+        <td>1 Block mit mindestens 2 und höchstens 10 Ziffern</td>
     </tr>
     <tr>
-        <td>SE-Sweden</td>
+        <td>SE-Schweden</td>
         <td>SE999999999999</td>
-        <td>1 block of 12 digits</td>
+        <td>1 Block mit 12 Ziffern</td>
     </tr>
     <tr>
-        <td>SI-Slovenia</td>
+        <td>SI-Slowenien</td>
         <td>SI99999999</td>
-        <td>1 block of 8 digits</td>
+        <td>1 Block mit 8 Ziffern</td>
     </tr>
     <tr>
-        <td>SK-Slovakia</td>
+        <td>SK-Slowakei</td>
         <td>SK9999999999</td>
-        <td>1 block of 10 digits</td>
+        <td>1 Block mit 10 Ziffern</td>
     </tr>
 </table>
-<p><strong>Notes:</strong></p>
+<p><strong>Hinweise:</strong></p>
 <ul id="vat4eu-notes">
-    <li><sup>1</sup> The 1st position following the prefix is always <b>U</b>.</li>
-    <li><sup>2</sup> The first digit following the prefix is always zero (<b>0</b>).</li>
-    <li><sup>3</sup> The (new) 10-digit format is the result of adding a leading zero to the (old) 9-digit format.</li>
-    <li><sup>4</sup> The first and last characters may be alpha or numeric; but they may not both be numeric.</li>
-    <li><sup>5</sup> Identifies branch traders.</li>
-    <li><sup>6</sup> Identifies Government Departments.</li>
-    <li><sup>7</sup> Identifies Health Authorities.</li>
-    <li><sup>8</sup> The 10th position following the prefix is always <b>B</b>.</li>
+    <li><sup>1</sup> Die 1. Stelle nach dem Präfix ist immer <b>U</b>.</li>
+    <li><sup>2</sup> Die erste Ziffer nach der Vorsilbe ist immer Null (<b>0</b>).</li>
+    <li><sup>3</sup> Das (neue) 10-stellige Format ist das Ergebnis der Hinzufügung einer führenden Null zum (alten) 9-stelligen Format.</li>
+    <li><sup>4</sup> Das erste und das letzte Zeichen können alphanumerisch oder numerisch sein; sie dürfen aber nicht beide numerisch sein.</li>
+    <li><sup>5</sup> Identifiziert die Zweighändler.</li>
+    <li><sup>6</sup> Bezeichnet Regierungsstellen.</li>
+    <li><sup>7</sup> Identifiziert Gesundheitsbehörden.</li>
+    <li><sup>8</sup> Die 10. Position nach dem Präfix ist immer <b>B</b>.</li>
 </ul>

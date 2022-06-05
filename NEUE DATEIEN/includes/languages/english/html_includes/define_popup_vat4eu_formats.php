@@ -1,5 +1,7 @@
+<p>Entering your VAT ID only makes sense if your company is located in an EU country outside the country of our store.</p>
+<p>Customers with a valid VAT ID will then have their taxes automatically deducted again by our store when they place an order.</p>
 <h1>VAT Identification Number Structure</h1>
-<p>These characters are used in the <em>Structure</em> column of the table below to illustrate the format required for the various <em>Member States</em>:
+<p>These characters are used in the <em>Structure</em> column of the table below to illustrate the format required for the various <em>Member States</em>:</p>
 <ul>
     <li>The <em>Format</em> excludes the 2-letter alpha prefix</li>
     <li><b>9</b>: A digit</li>
@@ -55,7 +57,7 @@
         <td>1 block of 9 digits</td>
     </tr>
     <tr>
-        <td>EL-Greece</td>
+        <td>GR-Greece</td>
         <td>EL999999999</td>
         <td>1 block of 9 digits</td>
     </tr>

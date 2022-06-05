@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: header.php 2022-06-02 20:03:16Z webchills $
+ * @version $Id: header.php 2022-06-05 07:45:16Z webchills $
  */
 $_SESSION['navigation']->remove_current_page();
 require DIR_WS_MODULES . zen_get_module_directory('require_languages.php');

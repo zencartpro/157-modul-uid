@@ -8,12 +8,9 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: vat4eu_extra_definitions_admin.php 2022-06-02 20:03:16Z webchills $
+ * @version $Id: vat4eu_extra_definitions_admin.php 2022-06-05 07:42:16Z webchills $
  */
  
-// bof do not change!
-if (!defined('VAT4EU_MIN_LENGTH')) define('VAT4EU_MIN_LENGTH', '');
-// eof do not not change!
 define('VAT4EU_TEXT_MESSAGE_INSTALLED', 'Das <em>UID</em> Modul wurde erfolgreich in Version v%s installiert.');
 define('VAT4EU_TEXT_MESSAGE_UPDATED', 'Das <em>UID</em> Modul wurde erfolgreich aktualisiert von v%1$s auf v%2$s.');
 
@@ -34,7 +31,7 @@ define('VAT4EU_ENTRY_OVERRIDE_VALIDATION', 'UID Prüfung übergehen:');
 
 define('VAT4EU_CUSTOMERS_HEADING', 'UID');
 
-define('VAT4EU_ENTRY_VAT_MIN_ERROR', '<span class="errorText">Mindestens ' . VAT4EU_MIN_LENGTH . ' Zeichen.</span>');
+define('VAT4EU_ENTRY_VAT_MIN_ERROR', '<span class="errorText">Mindestens %u Zeichen.</span>');
 define('VAT4EU_ENTRY_VAT_PREFIX_INVALID', '<span class="errorText">Muss beginnen mit <b>%1$s</b>, da die Adresse in <em>%2$s</em> ist.</span>');
 define('VAT4EU_ENTRY_VAT_INVALID_CHARS', '<span class="errorText">Ungültige Zeichen entdeckt</span>');
 define('VAT4EU_ENTRY_VAT_VIES_INVALID', '<span class="errorText">VIES Überprüfung fehlgeschlagen.</span>');

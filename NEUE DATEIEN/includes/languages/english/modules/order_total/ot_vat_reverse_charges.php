@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_vat_reverse_charges.php 2022-06-03 15:38:16Z webchills $
+ * @version $Id: ot_vat_reverse_charges.php 2022-06-05 08:35:16Z webchills $
  */
 // bof do not change
 if (IS_ADMIN_FLAG === true) {
@@ -17,7 +17,7 @@ if (!defined('VAT4EU_ENABLED')) define('VAT4EU_ENABLED', 'false');
 }
 $storeuid = '';
 $customeruid ='';
-if (VAT4EU_ENABLED === 'true'){
+if ((VAT4EU_ENABLED === 'true') && (IS_ADMIN_FLAG === false)){
 global $db;
 $storeuid = VAT4EU_STORE_UID;
 $check_uid_query = "SELECT entry_country_id, entry_vat_number, entry_vat_validated

@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_vat_refund.php 2022-06-03 08:29:16Z webchills $
+ * @version $Id: ot_vat_refund.php 2022-06-05 07:50:16Z webchills $
  */
  
 define('MODULE_ORDER_TOTAL_VAT_REFUND_TITLE', 'Mehrwertsteuer Erstattung');

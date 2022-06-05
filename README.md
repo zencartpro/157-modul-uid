@@ -10,9 +10,8 @@ Die UID wird bei der Registrierung und bei der Bearbeitung in der Administration
 Firmen mit gültiger UID aus EU-Ländern außerhalb des Shoplandes werden dann im Shop bei einer Bestellung die Steuern sofort rückerstattet. 
 Der Status der Überprüfung ist bei jedem Kunden mit UID in der Shopadministration ersichtlich.
 
-* Dieses Modul wurde gegenüber früheren Version komplett überarbeitet und verwendet als Codebasis nun das Modul Vat4Eu von lat9 (https://github.com/lat9/vat4eu)
-
-* Frühere Versionen haben die Steuerausweisung im UID-Fall komplett entfernt, diese Version tastet die Preise nicht an, sondern zieht die Steuer mit entsprechenden Hinweisen in Warenkorb, Checkout und Rechnung sofort wieder ab.
+* Dieses Modul wurde gegenüber früheren Version komplett überarbeitet und verwendet als Codebasis nun das Modul Vat4Eu von lat9
+Frühere Versionen haben die Steuerausweisung im UID-Fall komplett entfernt, diese Version tastet die Preise nicht an, sondern zieht die Steuer mit entsprechenden Hinweisen in Warenkorb, Checkout und Rechnung sofort wieder ab.
 
 * In der Administration ist ersichtlich, ob die UID wirklich bei VIES geprüft wurde oder von einem Administrator ohne VIES Prüfung hinterlegt wurde.
 Wurde die UID nicht erfolgreich geprüft, so dass sie eine Adminbestätigung erfordert, wird dem Kunden im Shop ein entsprechender Hinweis angezeigt und solange die UID nicht bestätigt wurde, erfolgt kein Abzug der Steuer.
@@ -30,8 +29,9 @@ Bevor Sie dieses Modul installieren prüfen Sie in Ihrer Zen Cart Administration
 Fehlt dieser Eintrag oder Soap Client ist disabled, aktvieren Sie die soap extension in Ihrer php.ini oder wenden Sie sich an Ihren Provider falls Sie auf solche Einstellungen keinen Zugriff haben.
 Dieses Modul funktioniert nur mit Soap Client enabled! 
 
-Changelog Version 3.1.1:
-* 2022-06-03 webchills 
+
+Changelog Version 3.1.2:
+* 2022-06-05 webchills 
 * Umstellung der Funktionalität auf die Codebasis von Vat4EU von lat9 (https://github.com/lat9/vat4eu)
 
 Änderungen gegenüber des Originalmoduls:
@@ -41,4 +41,5 @@ Changelog Version 3.1.1:
 * Zusatzeinstellung für eigene Shop UID
 * Konfig und Funktionalität "VAT Refund for in-country purchases" entfernt
 * Ausgabe des Hinweistextes im Format steuerfreie innergemeinschaftliche Lieferung | Unsere UID: ATU1234567 | Ihre UID: DE1234567 
+* Infotexte für das UID Hilfe Popup erweitert
 * Integration einer Konvertierungsmöglichkeit für die bereits vom früheren Modul 2.x hinterlegten UIDs

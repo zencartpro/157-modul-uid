@@ -8,14 +8,14 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_vat4eu_admin.php 2022-06-03 15:06:16Z webchills $
+ * @version $Id: init_vat4eu_admin.php 2022-06-05 08:40:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-define('VAT4EU_CURRENT_VERSION', '3.1.1');
+define('VAT4EU_CURRENT_VERSION', '3.1.2');
 
 // -----
 // Wait until an admin is logged in before seeing if any initialization steps need to be performed.
@@ -26,7 +26,7 @@ if (isset($_SESSION['admin_id'])) {
     // Create the plugin's configuration-group, if it's not already there.  That way, we'll have the
     // configuration_group_id, if needed for future configuration updates.
     //
-    $configurationGroupTitle = 'VAT4EU Plugin';
+    $configurationGroupTitle = 'VAT4EU Plugin';    
     $configuration = $db->Execute(
         "SELECT configuration_group_id 
            FROM " . TABLE_CONFIGURATION_GROUP . " 
@@ -39,7 +39,7 @@ if (isset($_SESSION['admin_id'])) {
                 (configuration_group_title, configuration_group_description, language_id, sort_order, visible) 
              VALUES 
                 ('$configurationGroupTitle', '$configurationGroupTitle Settings', 43, 1, 1);"
-        );
+        );        
         $cgi = $db->Insert_ID(); 
         $db->Execute(
             "UPDATE " . TABLE_CONFIGURATION_GROUP . " 
@@ -90,7 +90,7 @@ if (isset($_SESSION['admin_id'])) {
             "INSERT INTO " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function)
              VALUES 
-                ('<em>VAT Number</em> Validation', 'VAT4EU_VALIDATION', 'Admin', 'A <em>VAT Number</em> requires validation prior to granting the customer a VAT Refund. Choose the validation method to use for your store, one of:<br><br><b>Customer</b> ... validate on any customer update<br><b>Admin</b> ... only validated by admin action.<br>', $cgi, 5, now(), NULL, 'zen_cfg_select_option(array(\'Customer\', \'Admin\'),')"
+                ('<em>VAT Number</em> Validation', 'VAT4EU_VALIDATION', 'Customer', 'A <em>VAT Number</em> requires validation prior to granting the customer a VAT Refund. Choose the validation method to use for your store, one of:<br><br><b>Customer</b> ... validate on any customer update<br><b>Admin</b> ... only validated by admin action.<br>', $cgi, 5, now(), NULL, 'zen_cfg_select_option(array(\'Customer\', \'Admin\'),')"
         );
 
         $db->Execute(
