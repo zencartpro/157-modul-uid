@@ -10,8 +10,9 @@ Die UID wird bei der Registrierung und bei der Bearbeitung in der Administration
 Firmen mit gültiger UID aus EU-Ländern außerhalb des Shoplandes werden dann im Shop bei einer Bestellung die Steuern sofort rückerstattet. 
 Der Status der Überprüfung ist bei jedem Kunden mit UID in der Shopadministration ersichtlich.
 
-* Dieses Modul wurde gegenüber früheren Version komplett überarbeitet und verwendet als Codebasis nun das Modul Vat4Eu von lat9
-Frühere Versionen haben die Steuerausweisung im UID-Fall komplett entfernt, diese Version tastet die Preise nicht an, sondern zieht die Steuer mit entsprechenden Hinweisen in Warenkorb, Checkout und Rechnung sofort wieder ab.
+* Dieses Modul wurde gegenüber früheren Version komplett überarbeitet und verwendet als Codebasis nun das Modul Vat4EU von lat9 (https://github.com/lat9/vat4eu)
+
+* Frühere Versionen haben die Steuerausweisung im UID-Fall komplett entfernt, diese Version tastet die Preise nicht an, sondern zieht die Steuer mit entsprechenden Hinweisen in Warenkorb, Checkout und Rechnung sofort wieder ab.
 
 * In der Administration ist ersichtlich, ob die UID wirklich bei VIES geprüft wurde oder von einem Administrator ohne VIES Prüfung hinterlegt wurde.
 Wurde die UID nicht erfolgreich geprüft, so dass sie eine Adminbestätigung erfordert, wird dem Kunden im Shop ein entsprechender Hinweis angezeigt und solange die UID nicht bestätigt wurde, erfolgt kein Abzug der Steuer.
@@ -21,18 +22,13 @@ steuerfreie innergemeinschaftliche Lieferung | Unsere UID: ATU1234567 | Ihre UID
 
 * User von älteren Versionen dieses Moduls, die bereits UID Daten in den Kundendaten hinterlegt haben, können diese mit einem beiliegenden Konvertierungsscript in die neue Datenbankstruktur des Moduls übernehmen.
 
-* Die neue Version des Moduls erfordert fast keine Änderungen in Corefiles mehr, alles was möglich ist, wird mit Observern gelöst, so dass die Installation äußerst einfach ist.
+* Seit Version 3.1.2 dieses Moduls sind fast keine Änderungen in Corefiles mehr erforderlich, alles was möglich ist, wird mit Observern gelöst, so dass die Installation äußerst einfach ist.
 
 * Hinweis:
 Die Überprüfung bei VIES wird via SOAP durchgeführt. Stellen Sie daher sicher, dass in Ihrer PHP Konfiguration die SOAP Extension aktiv ist.
 Bevor Sie dieses Modul installieren prüfen Sie in Ihrer Zen Cart Administration unter Tools > Serverinfo ob es einen Eintrag soap gibt mit Soap Client enabled.
 Fehlt dieser Eintrag oder Soap Client ist disabled, aktvieren Sie die soap extension in Ihrer php.ini oder wenden Sie sich an Ihren Provider falls Sie auf solche Einstellungen keinen Zugriff haben.
 Dieses Modul funktioniert nur mit Soap Client enabled! 
-
-
-Changelog Version 3.1.2:
-* 2022-06-05 webchills 
-* Umstellung der Funktionalität auf die Codebasis von Vat4EU von lat9 (https://github.com/lat9/vat4eu)
 
 Änderungen gegenüber des Originalmoduls:
 * deutsche Übersetzung hinzugefügt
