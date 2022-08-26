@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.vat_for_eu_countries.php 2022-06-02 20:03:16Z webchills $
+ * @version $Id: auto.vat_for_eu_countries.php 2022-08-26 17:41:16Z webchills $
  */
  
 class zcObserverVatForEuCountries extends base 
@@ -111,7 +111,7 @@ class zcObserverVatForEuCountries extends base
             if (zen_is_logged_in() && !zen_in_guest_checkout()) {
                 $address_id = (isset($_SESSION['billto'])) ? $_SESSION['billto'] : $_SESSION['customer_default_address_id'];
                 $this->getVatNumber($_SESSION['customer_id'], $address_id);
-                if ($this->vatNumber !== '' && $this->vatNumberStatus !== VatValidation::VAT_ADMIN_OVERRIDE && $this->vatNumberStatus !== VatValidation::VAT_VIES_OK) {
+                if ((!empty($this->vatNumber) && $this->vatNumberStatus !== VatValidation::VAT_ADMIN_OVERRIDE && $this->vatNumberStatus !== VatValidation::VAT_VIES_OK)) {
                     $messageStack->add('header', sprintf(VAT4EU_APPROVAL_PENDING, $this->vatNumber), 'warning');
                 }
             }
@@ -160,7 +160,7 @@ class zcObserverVatForEuCountries extends base
             //
             case 'NOTIFY_ORDER_DURING_CREATE_ADDED_ORDER_HEADER':
                 $this->checkVatIsRefundable();
-                if ($this->vatNumber !== '') {
+                if (!empty ($this->vatNumber)) {
                     $db->Execute(
                         "UPDATE " . TABLE_ORDERS . "
                             SET billing_vat_number = '" . zen_db_prepare_input($this->vatNumber) . "',
@@ -496,7 +496,7 @@ class zcObserverVatForEuCountries extends base
         $use_vat_from_address_book = false;
         $show_vat_number = false;
 
-        if ($this->vatNumber !== '' || $current_page_base === FILENAME_ADDRESS_BOOK || $current_page_base === FILENAME_CHECKOUT_PAYMENT_ADDRESS) {
+        if (!empty($this->vatNumber) || $current_page_base === FILENAME_ADDRESS_BOOK || $current_page_base === FILENAME_CHECKOUT_PAYMENT_ADDRESS) {
             // -----
             // Determine whether the VAT Number should be appended to the specified address, based
             // on the page from which the zen_address_format request was made.
