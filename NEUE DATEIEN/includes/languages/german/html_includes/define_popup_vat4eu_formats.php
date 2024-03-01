@@ -57,7 +57,7 @@
         <td>1 Block mit 9 Ziffern</td>
     </tr>
     <tr>
-        <td>GR-Griechenland</td>
+        <td>EL-Griechenland</td>
         <td>EL999999999</td>
         <td>1 Block mit 9 Ziffern</td>
     </tr>

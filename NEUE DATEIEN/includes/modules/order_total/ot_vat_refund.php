@@ -3,12 +3,12 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2022 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_vat_refund.php 2022-06-03 08:29:16Z webchills $
+ * @version $Id: ot_vat_refund.php 2024-03-01 20:29:16Z webchills $
  */
  
 if (!defined('IS_ADMIN_FLAG')) {
@@ -18,7 +18,10 @@ if (!defined('IS_ADMIN_FLAG')) {
 class ot_vat_refund extends base
 {
     public    $title;
-    public    $output;
+    public $description;
+    public $output;
+    public $code;
+    public $sort_order;
     protected $_check;
     protected $isEnabled = false;
 
@@ -32,31 +35,34 @@ class ot_vat_refund extends base
             return false;
         }
         
-        $this->isEnabled = (defined('VAT4EU_ENABLED') && VAT4EU_ENABLED == 'true');
+        $this->isEnabled = (defined('VAT4EU_ENABLED') && VAT4EU_ENABLED === 'true');
 
-        $this->output = array();
+        $this->output = [];
     }
 
-    public function process() 
+    public function process()
     {
-        $is_refundable = false;
-        if ($this->isEnabled) {
-            if (IS_ADMIN_FLAG === false && is_object($GLOBALS['zcObserverVatForEuCountries'])) {
-                $is_refundable = $GLOBALS['zcObserverVatForEuCountries']->isVatRefundable();
-            } elseif (IS_ADMIN_FLAG == true && is_object($GLOBALS['vat4EuAdmin'])) {
-                $is_refundable = $GLOBALS['vat4EuAdmin']->isVatRefundable();
-            }
+        if ($this->isEnabled === false) {
+            return;
         }
-        if ($is_refundable) {
+
+        $is_refundable = false;
+        if (IS_ADMIN_FLAG === false && is_object($GLOBALS['zcObserverVatForEuCountries'])) {
+            $is_refundable = $GLOBALS['zcObserverVatForEuCountries']->isVatRefundable();
+        } elseif (IS_ADMIN_FLAG == true && is_object($GLOBALS['vat4EuAdmin'])) {
+            $is_refundable = $GLOBALS['vat4EuAdmin']->isVatRefundable();
+        }
+
+        if ($is_refundable === true) {
             $order = $GLOBALS['order'];
             $vat_refund = $order->info['tax'];
-            $GLOBALS['order']->info['total'] -= $vat_refund;
             if ($vat_refund != 0) {
-                $this->output[] = array(
+                $GLOBALS['order']->info['total'] -= $vat_refund;
+                $this->output[] = [
                     'title' => $this->title . ':',
                     'text' => '-' . $GLOBALS['currencies']->format($vat_refund, true, $order->info['currency'], $order->info['currency_value']),
                     'value' => -$vat_refund
-                );
+                ];
             }
         }
     }
@@ -75,21 +81,21 @@ class ot_vat_refund extends base
         return $this->_check;
     }
 
-    public function keys() 
+    public function keys()
     {
-        return array(
-            'MODULE_ORDER_TOTAL_VAT_REFUND_STATUS', 
-            'MODULE_ORDER_TOTAL_VAT_REFUND_SORT_ORDER', 
-        );
+        return [
+            'MODULE_ORDER_TOTAL_VAT_REFUND_STATUS',
+            'MODULE_ORDER_TOTAL_VAT_REFUND_SORT_ORDER',
+        ];
     }
 
-    public function install() 
+    public function install()
     {
         $GLOBALS['db']->Execute(
-            "INSERT INTO " . TABLE_CONFIGURATION . " 
-                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) 
-             VALUES 
-                ('This module is installed', 'MODULE_ORDER_TOTAL_VAT_REFUND_STATUS', 'true', '', '6', '1','zen_cfg_select_option(array(\'true\'), ', now())"
+            "INSERT INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added)
+             VALUES
+                ('This module is installed', 'MODULE_ORDER_TOTAL_VAT_REFUND_STATUS', 'true', '', '6', '1','zen_cfg_select_option([\'true\'], ', now())"
         );
         $GLOBALS['db']->Execute(
             "INSERT INTO " . TABLE_CONFIGURATION . " 

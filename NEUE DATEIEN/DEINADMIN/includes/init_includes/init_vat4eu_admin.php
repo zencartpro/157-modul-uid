@@ -3,25 +3,30 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2022 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_vat4eu_admin.php 2022-06-05 08:40:16Z webchills $
+ * @version $Id: init_vat4eu_admin.php 2024-03-01 20:27:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-define('VAT4EU_CURRENT_VERSION', '3.1.2');
+define('VAT4EU_CURRENT_VERSION', '3.2.0');
+define('VAT4EU_CURRENT_UPDATE_DATE', '2024-03-01');
+
+define('VAT4EU_CURRENT_VERSION', VAT4EU_CURRENT_RELEASE . ': ' . VAT4EU_CURRENT_UPDATE_DATE);
 
 // -----
 // Wait until an admin is logged in before seeing if any initialization steps need to be performed.
 // That ensures that "someone" will see the plugin's installation/update messages!
 //
-if (isset($_SESSION['admin_id'])) {
+if (!isset($_SESSION['admin_id']) || (defined('VAT4EU_MODULE_VERSION') && VAT4EU_MODULE_VERSION === VAT4EU_CURRENT_VERSION)) {
+    return;
+}
     // -----
     // Create the plugin's configuration-group, if it's not already there.  That way, we'll have the
     // configuration_group_id, if needed for future configuration updates.
@@ -62,7 +67,7 @@ if (isset($_SESSION['admin_id'])) {
             "INSERT INTO " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, set_function) 
              VALUES 
-                ('Plugin Version', 'VAT4EU_MODULE_VERSION', '" . VAT4EU_CURRENT_VERSION . "', 'The &quot;VAT for EU Countries (VAT4EU)&quot; current version and release date.', $cgi, 1, now(), 'trim(')"
+            ('Plugin Version and Release Date', 'VAT4EU_MODULE_VERSION', '" . VAT4EU_CURRENT_VERSION . "', 'The &quot;VAT for EU Countries (VAT4EU)&quot; current version and release date.', $cgi, 10, now(), 'zen_cfg_read_only(')"
         );       
 
         $db->Execute(
@@ -162,19 +167,38 @@ if (isset($_SESSION['admin_id'])) {
     }
 
     
+
+// -----
+// Perform version-specific updates/additions.
+//
+switch (true) {
     // -----
-    // Update the configuration table to reflect the current version, if it's not already set.
+    // v3.2.0:
     //
-    if (VAT4EU_MODULE_VERSION != VAT4EU_CURRENT_VERSION) {
+    // - Use zen_cfg_read_only instead of trim for module's version-setting.
+    //
+    case version_compare(VAT4EU_MODULE_VERSION, '3.2.0', '<'):
         $db->Execute(
-            "UPDATE " . TABLE_CONFIGURATION . " 
-                SET configuration_value = '" . VAT4EU_CURRENT_VERSION . "',
-                    set_function = 'zen_cfg_read_only('
+            "UPDATE " . TABLE_CONFIGURATION . "
+                SET set_function = 'zen_cfg_read_only('
               WHERE configuration_key = 'VAT4EU_MODULE_VERSION'
               LIMIT 1"
         );
-        if (VAT4EU_MODULE_VERSION != '0.0.0') {
-            $messageStack->add(sprintf(VAT4EU_TEXT_MESSAGE_UPDATED, VAT4EU_MODULE_VERSION, VAT4EU_CURRENT_VERSION), 'success');
-        }
-    }
+
+    default:                //- Fall through from above
+        break;
+}
+
+// -----
+// Update the configuration table to reflect the current version, if it's not already set.
+//
+$db->Execute(
+    "UPDATE " . TABLE_CONFIGURATION . " 
+        SET configuration_value = '" . VAT4EU_CURRENT_VERSION . "',
+            set_function = 'zen_cfg_read_only('
+      WHERE configuration_key = 'VAT4EU_MODULE_VERSION'
+      LIMIT 1"
+);
+if (VAT4EU_MODULE_VERSION !== '0.0.0') {
+    $messageStack->add(sprintf(VAT4EU_TEXT_MESSAGE_UPDATED, VAT4EU_MODULE_VERSION, VAT4EU_CURRENT_VERSION), 'success');
 }

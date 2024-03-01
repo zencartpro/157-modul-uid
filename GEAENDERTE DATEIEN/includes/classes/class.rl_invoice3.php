@@ -2,11 +2,11 @@
 /**
  * @package pdf Rechnung
  * @copyright Copyright 2005-2012 langheiter.com 
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: class.rl_invoice3.php for UID 2022-06-03 15:02:17Z webchills $
+ * @version $Id: class.rl_invoice3.php for UID 2024-01-20 09:02:17Z webchills $
  */
 
 error_reporting(E_ERROR);
@@ -512,7 +512,7 @@ function CheckPageBreak($h) {
         return $this->pdfPath['path'] . $pdfName;
     }
     function getPDFAttachments($param = 'ALL') {
-        $attachArray = array();
+        $attachArray = [];
         $tmp = $this->getPDFFileName();
         if (file_exists($tmp)) {
             $ft = str_replace($this->pdfPath['path'], '', $tmp);
