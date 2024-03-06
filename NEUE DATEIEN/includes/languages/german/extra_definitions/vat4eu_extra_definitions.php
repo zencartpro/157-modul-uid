@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: vat4eu_extra_definitions.php 2024-03-01 20:49:16Z webchills $
+ * @version $Id: vat4eu_extra_definitions.php 2024-03-06 20:49:16Z webchills $
  */
 // If VAT4EU hasn't been installed in the admin or removed, don't process these
 // definitions since the missing constant will possibly result in a PHP Fatal error!
@@ -29,9 +29,10 @@ define('VAT4EU_ENTRY_VAT_NUMBER', 'UID:');
 define('VAT4EU_DISPLAY_VAT_NUMBER', 'UID: ');
 
 // -----
-// This definition is used by tpl_modules_vat4eu_display.php's link to the popup_vat4eu_formats page.
+// These definitions are used by tpl_modules_vat4eu_display.php's link to the popup_vat4eu_formats page.
 //
 define('VAT4EU_WHATS_THIS', 'Info zur UID Eingabe');
+define('VAT4EU_CHANGE_IN_ADDRESS_BOOK','Um die &quot;UID&quot; für diese Bestellung zu ändern, ändern Sie sie bitte in Ihrem <a href="%s">Adressbuch</a> und gehen Sie dann erneut zur Kasse.');
 
 define('VAT4EU_ENTRY_VAT_MIN_ERROR', 'Ihre <em>UID</em> muss mindestens ' . VAT4EU_MIN_LENGTH . ' Zeichen haben.');
 define('VAT4EU_ENTRY_VAT_PREFIX_INVALID', 'Ihre <em>UID</em> muss mit <b>%1$s</b> beginnen, da Ihre Adresse in <em>%2$s</em> ist.');

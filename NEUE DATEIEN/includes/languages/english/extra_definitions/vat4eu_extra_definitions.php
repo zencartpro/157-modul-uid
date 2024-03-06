@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: vat4eu_extra_definitions.php 2024-03-01 20:49:16Z webchills $
+ * @version $Id: vat4eu_extra_definitions.php 2024-03-06 20:49:16Z webchills $
  */
 // If VAT4EU hasn't been installed in the admin or removed, don't process these
 // definitions since the missing constant will possibly result in a PHP Fatal error!
@@ -29,9 +29,10 @@ define('VAT4EU_ENTRY_VAT_NUMBER', 'VAT Number:');
 define('VAT4EU_DISPLAY_VAT_NUMBER', 'VAT Number: ');
 
 // -----
-// This definition is used by tpl_modules_vat4eu_display.php's link to the popup_vat4eu_formats page.
+// These definitions are used by tpl_modules_vat4eu_display.php's link to the popup_vat4eu_formats page.
 //
 define('VAT4EU_WHATS_THIS', 'What\'s this?');
+define('VAT4EU_CHANGE_IN_ADDRESS_BOOK','To change the &quot;VAT Number&quot; to be used for this order, please update the value in your <a href="%s">address book</a> and then return to checkout.');
 
 define('VAT4EU_ENTRY_VAT_MIN_ERROR', 'Your <em>VAT Number</em> must contain a minimum of ' . VAT4EU_MIN_LENGTH . ' characters.');
 define('VAT4EU_ENTRY_VAT_PREFIX_INVALID', 'Your <em>VAT Number</em> must begin with <b>%1$s</b>, since the address is in <em>%2$s</em>.');

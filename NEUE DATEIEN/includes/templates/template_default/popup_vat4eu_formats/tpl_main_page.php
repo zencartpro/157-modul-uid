@@ -3,22 +3,19 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2022 Vinos de Frutas Tropicales
+ * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_main_page.php 2022-06-04 10:22:16Z webchills $
+ * @version $Id: tpl_main_page.php 2024-03-06 20:22:16Z webchills $
  */
 ?>
 <body id="popupVat4EuFormats">
     <div id="main-section">
         <p class="close-it"><a href="javascript:window.close()"><?php echo TEXT_CURRENT_CLOSE_WINDOW; ?></a></p>
-<?php
-/**
- * require the html_define for the popup_vat4eu_formats page
- */
-  require($define_page);
+<?php 
+require $define_page; 
 ?>
         <p class="close-it"><a href="javascript:window.close()"><?php echo TEXT_CURRENT_CLOSE_WINDOW; ?></a></p>
     </div>

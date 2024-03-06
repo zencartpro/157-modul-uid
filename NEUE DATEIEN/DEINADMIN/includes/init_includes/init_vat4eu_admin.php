@@ -16,7 +16,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 }
 
 define('VAT4EU_CURRENT_RELEASE', '3.2.0');
-define('VAT4EU_CURRENT_UPDATE_DATE', '2024-03-01');
+define('VAT4EU_CURRENT_UPDATE_DATE', '2024-03-06');
 
 define('VAT4EU_CURRENT_VERSION', VAT4EU_CURRENT_RELEASE . ': ' . VAT4EU_CURRENT_UPDATE_DATE);
 
@@ -74,21 +74,21 @@ if (!isset($_SESSION['admin_id']) || (defined('VAT4EU_MODULE_VERSION') && VAT4EU
             "INSERT INTO " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function)
              VALUES 
-                ('Enable storefront processing?', 'VAT4EU_ENABLED', 'false', 'The <em>VAT4EU</em> processing is enabled when this setting is &quot;true&quot; and you have also set <em>Configuration-&gt;Customer Details-&gt;Company</em> to <b>true</b>.', $cgi, 2, now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),')"
+            ('Enable storefront processing?', 'VAT4EU_ENABLED', 'false', 'The <em>VAT4EU</em> processing is enabled when this setting is &quot;true&quot; and you have also set <em>Configuration :: Customer Details :: Company</em> to <b>true</b>.', $cgi, 20, now(), NULL, 'zen_cfg_select_option([\'true\', \'false\'],')"
         );
 
         $db->Execute(
             "INSERT INTO " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function)
              VALUES 
-                ('VAT Number Required?', 'VAT4EU_REQUIRED', 'false', 'Should the <em>VAT Number</em> be a <b>required</b> field?', $cgi, 3, now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),')"
+            ('VAT Number Required?', 'VAT4EU_REQUIRED', 'false', 'Should the <em>VAT Number</em> be a <b>required</b> field?', $cgi, 30, now(), NULL, 'zen_cfg_select_option([\'true\', \'false\'],')"
         );
 
         $db->Execute(
             "INSERT INTO " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function)
              VALUES 
-                ('Minimum VAT Number Length', 'VAT4EU_MIN_LENGTH', '10', 'Identify the minimum length of an entered VAT Number, used as a pre-check for any input value. Set the value to <em>0</em> to disable this check.', $cgi, 4, now(), NULL, NULL)"
+            ('Minimum VAT Number Length', 'VAT4EU_MIN_LENGTH', '10', 'Identify the minimum length of an entered VAT Number, used as a pre-check for any input value. Set the value to <em>0</em> to disable this check.', $cgi, 31, now(), NULL, NULL)"
         );
 
         $db->Execute(
@@ -116,7 +116,7 @@ if (!isset($_SESSION['admin_id']) || (defined('VAT4EU_MODULE_VERSION') && VAT4EU
             "INSERT INTO " . TABLE_CONFIGURATION . "
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function)
              VALUES 
-                ('Enable debug?', 'VAT4EU_DEBUG', 'false', 'Should the plugin\'s <em>debug</em> mode be enabled?  When enabled, each VAT validation request and response is logged to /logs/VatValidate.log.', $cgi, 8, now(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),')"
+            ('Enable debug?', 'VAT4EU_DEBUG', 'false', 'Should the plugin\'s <em>debug</em> mode be enabled?  When enabled, each VAT validation request and response is logged to /logs/VatValidate.log.', $cgi, 1000, now(), NULL, 'zen_cfg_select_option([\'true\', \'false\'],')"
         );
         
         // -----

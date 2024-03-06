@@ -1,3 +1,4 @@
+<div class="p-2">
 <p>Die Eingabe Ihrer UID ist nur dann sinnvoll, wenn Ihre Firma sich in einem EU-Land außerhalb des Landes unseres Shops befindet.</p>
 <p>Kunden mit gültiger UID werden dann von unserem Shop bei einer Bestellung automatisch die Steuern wieder abgezogen.</p>
 <h1>Struktur der Umsatzsteuer-Identifikationsnummer</h1>
@@ -163,3 +164,4 @@
     <li><sup>7</sup> Identifiziert Gesundheitsbehörden.</li>
     <li><sup>8</sup> Die 10. Position nach dem Präfix ist immer <b>B</b>.</li>
 </ul>
+</div>

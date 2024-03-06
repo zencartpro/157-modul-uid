@@ -1,3 +1,4 @@
+<div class="p-2">
 <p>Entering your VAT ID only makes sense if your company is located in an EU country outside the country of our store.</p>
 <p>Customers with a valid VAT ID will then have their taxes automatically deducted again by our store when they place an order.</p>
 <h1>VAT Identification Number Structure</h1>
@@ -28,17 +29,17 @@
     </tr>
     <tr>
         <td>BG-Bulgaria</td>
-        <td>BG999999999 or<br />BG9999999999</td>
-        <td>1 block of 9 digits or<br />1 block of 10 digits</td>
-    </tr>
-    <tr>
-        <td>CY-Cyprus</td>
-        <td>CY99999999L</td>
-        <td>1 block of 9 characters</td>
-    </tr>
-    <tr>
-        <td>CZ-Czech Republic</td>
-        <td>CZ99999999 or<br />CZ999999999 or<br />CZ9999999999</td>
+            <td>BG999999999 or<br>BG9999999999</td>
+            <td>1 block of 9 digits or<br>1 block of 10 digits</td>
+        </tr>
+        <tr>
+            <td>CY-Cyprus</td>
+            <td>CY99999999L</td>
+            <td>1 block of 9 characters</td>
+        </tr>
+        <tr>
+            <td>CZ-Czech Republic</td>
+            <td>CZ99999999 or<br>CZ999999999 or<br>CZ9999999999</td>
         <td>1 block of either 8, 9 or 10 digits</td>
     </tr>
     <tr>
@@ -88,18 +89,18 @@
     </tr>
     <tr>
         <td>IE-Ireland</td>
-        <td>IE9S99999L<br />IE9999999WI</td>
-        <td>1 block of 8 characters or<br />1 block of 9 characters</td>
-    </tr>
-    <tr>
-        <td>IT-Italy</td>
-        <td>IT99999999999</td>
-        <td>1 block of 11 digits</td>
-    </tr>
-    <tr>
-        <td>LT-Lithuania</td>
-        <td>LT999999999 or<br />LT999999999999</td>
-        <td>1 block of 9 digits or<br />1 block of 12 digits</td>
+            <td>IE9S99999L<br>IE9999999WI</td>
+            <td>1 block of 8 characters or<br>1 block of 9 characters</td>
+        </tr>
+        <tr>
+            <td>IT-Italy</td>
+            <td>IT99999999999</td>
+            <td>1 block of 11 digits</td>
+        </tr>
+        <tr>
+            <td>LT-Lithuania</td>
+            <td>LT999999999 or<br>LT999999999999</td>
+            <td>1 block of 9 digits or<br>1 block of 12 digits</td>
     </tr>
     <tr>
         <td>LU-Luxembourg</td>
@@ -163,3 +164,4 @@
     <li><sup>7</sup> Identifies Health Authorities.</li>
     <li><sup>8</sup> The 10th position following the prefix is always <b>B</b>.</li>
 </ul>
+</div>
