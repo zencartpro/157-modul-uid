@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: Vat4EuAdminObserver.php 2024-03-01 20:24:16Z webchills $
+ * @version $Id: Vat4EuAdminObserver.php 2024-03-07 07:31:16Z webchills $
  */
  
 if (!defined('IS_ADMIN_FLAG') || IS_ADMIN_FLAG !== true) {
@@ -37,7 +37,7 @@ class Vat4EuAdminObserver extends base
     // - Register for the notifications pertinent to the plugin's processing.
     // - Set initial values base on the plugin's database configuration.
     //
-    public function __construct() 
+    public function __construct()
     {
         // -----
         // Pull in the VatValidation class, enabling its constants to be used even if the plugin
@@ -180,10 +180,13 @@ class Vat4EuAdminObserver extends base
                 $heading_text = VAT4EU_CUSTOMERS_HEADING;
                 if (isset($_GET['list_order']) && strpos($_GET['list_order'], 'vatnum') === 0) {
                     $heading_text = '<span class="SortOrderHeader">' . $heading_text . '</span>';
+                    global $disp_order;
                     if ($_GET['list_order'] === 'vatnum-asc') {
                         $asc_class = 'SortOrderHeader';
+                        $disp_order = 'a.entry_vat_number, c.customers_lastname, c.customers_firstname';
                     } else {
                         $desc_class = 'SortOrderHeader';
+                        $disp_order = 'a.entry_vat_number DESC, c.customers_lastname, c.customers_firstname';
                     }
                 }
                 $current_parms = zen_get_all_get_params(['list_order', 'page']);
@@ -205,7 +208,7 @@ class Vat4EuAdminObserver extends base
                 ];
                 $p2[] = $heading;
                 break;
-
+ 
             // -----
             // Issued by Customers :: Customers during listing generation, allows us to insert
             // additional VAT-related columns for each customer.
@@ -237,6 +240,7 @@ class Vat4EuAdminObserver extends base
                         $vat_validation_status = $next_address['address']['entry_vat_validated'];
                         break;
                     }
+
                     // -----
                     // Otherwise, pull the VAT number and its validation status from the database.
                     //
@@ -249,6 +253,7 @@ class Vat4EuAdminObserver extends base
                 if ($vat_number !== '') {
                     $vat_validated = $this->showVatNumberStatus($vat_validation_status);
                 }
+
                 $vat_column = [
                     'content' => $vat_validated . $vat_number,
                     'class' => 'center'
@@ -393,7 +398,7 @@ class Vat4EuAdminObserver extends base
     // a boolean value that indicates whether (true) or not (false) the VAT Number is 'valid'.
     //
     protected function validateVatNumber()
-    {       
+    {
         global $vat_number, $vat_number_override, $current_page;
 
         $vat_number = strtoupper(zen_db_prepare_input($_POST['vat_number']));

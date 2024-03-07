@@ -8,15 +8,15 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_vat4eu_admin.php 2024-03-01 20:27:16Z webchills $
+ * @version $Id: init_vat4eu_admin.php 2024-03-07 07:32:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-define('VAT4EU_CURRENT_RELEASE', '3.2.0');
-define('VAT4EU_CURRENT_UPDATE_DATE', '2024-03-06');
+define('VAT4EU_CURRENT_RELEASE', '3.2.1');
+define('VAT4EU_CURRENT_UPDATE_DATE', '2024-03-07');
 
 define('VAT4EU_CURRENT_VERSION', VAT4EU_CURRENT_RELEASE . ': ' . VAT4EU_CURRENT_UPDATE_DATE);
 
