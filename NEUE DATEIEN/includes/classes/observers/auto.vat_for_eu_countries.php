@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.vat_for_eu_countries.php 2024-03-06 20:06:16Z webchills $
+ * @version $Id: auto.vat_for_eu_countries.php 2024-04-21 19:06:16Z webchills $
  */
  
 class zcObserverVatForEuCountries extends base 
@@ -224,6 +224,7 @@ class zcObserverVatForEuCountries extends base
             //
             case 'NOTIFY_ORDER_DURING_CREATE_ADDED_ORDER_HEADER':
                 [$vat_number, $vat_validated_status] = $this->getCustomersVatNumber($_SESSION['customer_id'], $_SESSION['billto']);
+                if (!empty($_SESSION['billto'])){
                 if (!empty($vat_number)) {
                     $db->Execute(
                         "UPDATE " . TABLE_ORDERS . "
@@ -232,6 +233,7 @@ class zcObserverVatForEuCountries extends base
                           WHERE orders_id = " . (int)$p2 . "
                           LIMIT 1"
                     );
+                }
                 }
                 break;
 

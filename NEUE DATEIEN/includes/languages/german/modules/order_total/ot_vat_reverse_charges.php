@@ -3,12 +3,12 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2022 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_vat_reverse_charges.php 2022-06-05 08:35:16Z webchills $
+ * @version $Id: ot_vat_reverse_charges.php 2024-04-21 19:20:16Z webchills $
  */
 
 // bof do not change
@@ -19,6 +19,7 @@ if (!defined('VAT4EU_ENABLED')) define('VAT4EU_ENABLED', 'false');
 $storeuid = '';
 $customeruid ='';
 if ((VAT4EU_ENABLED === 'true') && (IS_ADMIN_FLAG === false)){
+if (zen_is_logged_in()) { 
 global $db;
 $storeuid = VAT4EU_STORE_UID;
 $check_uid_query = "SELECT entry_country_id, entry_vat_number, entry_vat_validated
@@ -32,6 +33,7 @@ $check_uid = $db->Execute($check_uid_query);
         if (!$check_uid->EOF) {
         	$customeruid = $check_uid->fields['entry_vat_number'];
         }
+}
 }
 // eof do not change
  
