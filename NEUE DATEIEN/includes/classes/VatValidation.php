@@ -3,19 +3,19 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Copyright (c) 2017-2025 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: VatValidation.php 2024-06-06 20:03:16Z webchills $
+ * @version $Id: VatValidation.php 2025-05-03 20:03:16Z webchills $
  */
 //
 // This class derived from a similarly-named class provided here: https://github.com/herdani/vat-validation
 //
 class VatValidation
 {
-    const WSDL = "https://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl";
+    const WSDL = 'https://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
 
     // -----
     // These class constants define the possible values for the entry_vat_validated field, present
@@ -61,7 +61,7 @@ class VatValidation
     // Since we'll need the SOAP service to automatically validate the VAT Number, check now
     // to see that the PHP installation includes that service, logging a warning if not.
     //
-    public function __construct($countryCode, $vatNumber) 
+    public function __construct(string $countryCode, string $vatNumber)
     {
         if (defined('VAT4EU_ENABLED') && VAT4EU_ENABLED === 'true') {
             $this->debug = (defined('VAT4EU_DEBUG') && VAT4EU_DEBUG === 'true');
@@ -78,10 +78,10 @@ class VatValidation
             } else {
                 $this->soapInstalled = true;
                 try {
-                    $this->client = new SoapClient(self::WSDL, ['trace' => true]);
+                    $this->client = new \SoapClient(self::WSDL, ['trace' => true]);
                 } catch(Exception $e) {
                     $this->soapInstalled = false;
-                    trigger_error("VAT Number validation not possible, VAT Translation Error: " . $e->getMessage(), E_USER_WARNING);
+                    trigger_error('VAT Number validation not possible, VAT Translation Error: ' . $e->getMessage(), E_USER_WARNING);
                 }
             }
             $this->trace("__construct($countryCode, $vatNumber)");
@@ -117,10 +117,10 @@ class VatValidation
         //    characters allowed for some countries.
         } else {
             $vat_number_length = strlen($this->vatNumber);
-            if (VAT4EU_MIN_LENGTH !== '0' && $vat_number_length < VAT4EU_MIN_LENGTH) {
+            if (strpos($this->vatNumber, $this->countryCode) !== 0) {
+                $rc = self::VAT_BAD_PREFIX;
+            } elseif (VAT4EU_MIN_LENGTH !== '0' && $vat_number_length < VAT4EU_MIN_LENGTH) {
                 $rc = self::VAT_MIN_LENGTH;
-            } elseif (strpos($this->vatNumber, $this->countryCode) !== 0) {
-                $rc = self::VAT_BAD_PREFIX;  
             } elseif (!preg_match(sprintf(self::VAT_VALIDATION, $vat_number_length), $this->vatNumber)) {
                 $rc = self::VAT_INVALID_CHARS;
             } else {
@@ -150,7 +150,7 @@ class VatValidation
                 $number_validated = false;
             }
 
-            $this->trace("Web Service result (" . $this->countryCode . ', ' . $this->vatNumber . "): " . $this->client->__getLastResponse());
+            $this->trace('Web Service result (' . $this->countryCode . ', ' . $this->vatNumber . '): ' . $this->client->__getLastResponse());
 
             if ($number_validated === true && $rs->valid) {
                 $is_valid = true;

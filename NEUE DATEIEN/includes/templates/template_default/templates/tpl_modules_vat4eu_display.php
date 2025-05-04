@@ -3,55 +3,94 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Copyright (c) 2017-2025 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_vat4eu_display.php 2024-03-06 20:19:16Z webchills $
+ * @version $Id: tpl_modules_vat4eu_display.php 2025-05-03 20:19:16Z webchills $
  */
  //
-// If not enabled or in an OPC guest-checkout, don't offer the entry of the VAT number.
+// Note: Now loaded via VAT4EU's observer at the end of page-loads that enable
+// a logged-in customer to modify address-related information. The $vat_number, $form_field_disabled,
+// $vat4eu_formats_define and $form_field_message are 'in-scope' and set by the observer.
 //
-if (!defined('VAT4EU_ENABLED') || VAT4EU_ENABLED !== 'true' || zen_in_guest_checkout()) {
-    return;
+if ($vat4eu_is_bootstrap === true) {
+    $modal_link =
+        ' <a href="javascript:void();" data-toggle="modal" data-target="#vat4eu-modal">' .
+            '<i class="fas fa-solid fa-circle-info"></i>' .
+        '</a>';
+} else {
+    $modal_link =
+        ' <a href="javascript:void(0);" onclick="window.vat4eumodal.showModal();">' .
+            '<i class="fas fa-solid fa-circle-info"></i>' .
+        '</a>';
+/*
+        ' <a href="javascript:openModal(\'vat4eu-modal\');">' .
+            '<i class="fas fa-solid fa-circle-info"></i>' .
+        '</a>';
+*/
 }
-
-// -----
-// Ditto for the integration with OPC, where the to-be-gathered address isn't for the billing one.
-//
-global $which;
-if ((isset($which) && $which !== 'bill') || (isset($_POST['which']) && $_POST['which'] !== 'bill')){
-    return;
-}
-
-global $zcObserverVatForEuCountries;     //- global needed for OPC AJAX actions
-$vat_number = $zcObserverVatForEuCountries->getVatNumberForFormEntry($current_page_base ?? 'checkout_one');
-$vat_number = (!empty($vat_number)) ? zen_output_string_protected($vat_number) : '';
-
-// -----
-// Determine whether we're on the OPC data-gathering page; if so, the "VAT Number" cannot be updated
-// in that page's form (since OPC's jQuery doesn't recognize additional address-related fields
-// at this time).  Add, instead, a message pointing the customer to the address-book page where they *can*
-// provide a VAT Number update for the current order.
-//
-$form_field_disabled = '';
-$form_field_message = '';
-if (isset($which) || isset($_POST['which'])) {
-    $form_field_disabled = ' disabled';
-    $form_field_message = sprintf(VAT4EU_CHANGE_IN_ADDRESS_BOOK, zen_href_link(FILENAME_ADDRESS_BOOK_PROCESS, 'edit=' . $_SESSION['billto']));
-}
-
-$popup_link = '<a href="javascript:popupVat4EuWindow(\'' . zen_href_link(FILENAME_POPUP_VAT4EU_FORMATS) . '\')">' . VAT4EU_WHATS_THIS . '</a>';
 ?>
-<script>
-
-function popupVat4EuWindow(url) {
-    window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=500,height=320,screenX=150,screenY=150,top=150,left=150')
-}
-</script>
 <div class="clearBoth"></div>
-<label class="inputLabel" for="vat-number"><?= VAT4EU_ENTRY_VAT_NUMBER ?></label>
-<?= zen_draw_input_field('vat_number', $vat_number, zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_vat_number', '40') . ' id="vat-number"' . $form_field_disabled) . $popup_link . ' ' . $form_field_message ?>
+<label class="inputLabel" for="vat-number"><?= VAT4EU_ENTRY_VAT_NUMBER . $modal_link ?></label>
+<?= zen_draw_input_field(
+        'vat_number',
+        $vat_number,
+        zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_vat_number', '40') . ' id="vat-number"' . $form_field_disabled
+    ) .
+    ' ' . $form_field_message
+?>
 <div class="clearBoth p-2"></div>
-
+<?php
+// -----
+// The modal VAT4EU format is rendered differently for Bootstrap than
+// templates based on zc200+ responsive_classic.
+//
+if ($vat4eu_is_bootstrap === true) {
+?>
+<div class="modal" id="vat4eu-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><?= VAT4EU_MODAL_TITLE ?></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <?php require $vat4eu_formats_define; ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+    return;
+}
+/*
+?>
+<div id="vat4eu-modal" class="imgmodal">
+    <div class="imgmodal-content">
+        <span onclick="closeModal('vat4eu-modal');">
+            <div class="imgmodal-close">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <div class="center">
+                <?php require $vat4eu_formats_define; ?>
+            </div>
+        </span>
+    </div>
+</div>
+*/
+?>
+<dialog id="vat4eumodal">
+    <div id="vat4eumodal-header">
+        <h4 class="back"><?= VAT4EU_MODAL_TITLE ?></h4>
+        <button class="forward" type="button" onclick="window.vat4eumodal.close();" aria-label="close">&times;</button>
+        <div class="clearBoth"></div>
+    </div>
+ 
+    <?php require $vat4eu_formats_define; ?>
+    <button type="button" onclick="window.vat4eumodal.close();" aria-label="close">Close</button>
+</dialog>

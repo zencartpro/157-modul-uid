@@ -3,24 +3,30 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Copyright (c) 2017-2025 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: auto.vat_for_eu_countries.php 2024-04-21 19:06:16Z webchills $
+ * @version $Id: auto.vat_for_eu_countries.php 2025-05-03 19:06:16Z webchills $
  */
  
-class zcObserverVatForEuCountries extends base 
+class zcObserverVatForEuCountries extends \base
 {
-    private $isEnabled = false;
-    private $newCustomerId;
-    private $vatNumberStatus;
-    private $addressLabelCount = 0;
-    private $orderHasShippingAddress;
-    private $vatCountries = [];
-    private $debug = false;
-    private $logfile;
+   
+
+    private int $newCustomerId;
+    private int $vatNumberStatus;
+    private int $addressLabelCount = 0;
+    private bool $orderHasShippingAddress;
+
+    private array $vatCountries = [];
+
+    private bool $nonGuestIsLoggedIn;
+    private bool $isBootstrapTemplate;
+
+    private bool $debug = false;
+    private string $logfile;
 
     // -----
     // On construction, this auto-loaded observer checks to see that the plugin is enabled and, if so:
@@ -39,6 +45,8 @@ class zcObserverVatForEuCountries extends base
         if (!defined('VAT4EU_ENABLED') || VAT4EU_ENABLED !== 'true') {
             return;
         }
+        $this->nonGuestIsLoggedIn = (zen_is_logged_in() && !zen_in_guest_checkout());
+        $this->isBootstrapTemplate = (function_exists('zca_bootstrap_active') && zca_bootstrap_active() === true);
 
         // -----
         // Pull in the VatValidation class, enabling its constants to be used even if the plugin
@@ -48,9 +56,9 @@ class zcObserverVatForEuCountries extends base
             require DIR_WS_CLASSES . 'VatValidation.php';
         }
 
-        $this->isEnabled = true;
+        
         $this->debug = (VAT4EU_DEBUG === 'true');
-            if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+        if ($this->nonGuestIsLoggedIn === true) {
             $this->logfile = DIR_FS_LOGS . '/vat4eu_' . $_SESSION['customer_id'] . '_' . date('Ymd') . '.log';
         } else {
             $this->logfile = DIR_FS_LOGS . '/vat4eu' . '_' . date('Ymd') . '.log';
@@ -78,11 +86,39 @@ class zcObserverVatForEuCountries extends base
                     'NOTIFY_HEADER_END_SHOPPING_CART',          //- End of the "standard" page's processing
                 ]
             );
+        // -----
+        // If the current page provides a means for a customer to enter/change
+        // an address, watch for the end-of-content notification so that the
+        // VAT number entry-field can be added via the plugin's jQuery component.
+        //
+        $address_form_pages = [
+            FILENAME_CREATE_ACCOUNT,
+            FILENAME_LOGIN,
+        ];
+        if ($this->nonGuestIsLoggedIn === true) {
+            $address_form_pages = array_merge($address_form_pages, [
+                FILENAME_ADDRESS_BOOK_PROCESS,
+                FILENAME_CHECKOUT_PAYMENT_ADDRESS,
+                FILENAME_CHECKOUT_SHIPPING_ADDRESS,
+            ]);
+
+            if (defined('FILENAME_CHECKOUT_ONE')) {
+                $address_form_pages[] = FILENAME_CHECKOUT_ONE;
+            }
+        }
+
+        global $current_page_base;
+        if (in_array($current_page_base, $address_form_pages)) {
+            $this->attach($this, ['NOTIFY_FOOTER_END']);
+            if ($this->isBootstrapTemplate === false) {
+                $this->attach($this, ['NOTIFY_HTML_HEAD_CSS_BEGIN']);
+            }
+        }
 
             // -----
         // The majority of the VAT4EU processing is available **only** for logged-in, non-guest customers.
             //
-            if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+        if ($this->nonGuestIsLoggedIn === true) {
                 $this->attach(
                     $this, 
                     [
@@ -121,7 +157,7 @@ class zcObserverVatForEuCountries extends base
                 $message_pages[] = FILENAME_CHECKOUT_ONE;
                 $message_pages[] = FILENAME_CHECKOUT_ONE_CONFIRMATION;
             }
-            if (!in_array($GLOBALS['current_page_base'], $message_pages)) {
+            if (!in_array($current_page_base, $message_pages)) {
                 return;
             }
 
@@ -278,7 +314,7 @@ class zcObserverVatForEuCountries extends base
             //  $p1 ... An associative array that contains the 'customer_id'.
             //
             case 'NOTIFY_MODULE_CREATE_ACCOUNT_ADDED_CUSTOMER_RECORD':
-                $this->newCustomerId = $p1['customer_id'];
+                $this->newCustomerId = (int)$p1['customer_id'];
                 break;
 
             // -----
@@ -293,9 +329,9 @@ class zcObserverVatForEuCountries extends base
             case 'NOTIFY_MODULE_CHECKOUT_ADDED_ADDRESS_BOOK_RECORD':        //- Fall through ...
             case 'NOTIFY_MODULE_ADDRESS_BOOK_UPDATED_ADDRESS_BOOK_RECORD':  //- Fall through ...
             case 'NOTIFY_MODULE_ADDRESS_BOOK_ADDED_ADDRESS_BOOK_RECORD':    //- Fall through ...
-                $customer_id = $customer_id ?? $_SESSION['customer_id'];
+                $customer_id = $customer_id ?? (int)$_SESSION['customer_id'];
                 $address_book_id = ($eventID === 'NOTIFY_MODULE_ADDRESS_BOOK_UPDATED_ADDRESS_BOOK_RECORD') ? $p1['address_book_id'] : $p1['address_id'];
-                $vat_number = zen_db_prepare_input($_POST['vat_number']);
+                $vat_number = zen_db_prepare_input($_POST['vat_number'] ?? '');
                 $db->Execute(
                     "UPDATE " . TABLE_ADDRESS_BOOK . "
                         SET entry_vat_number = '$vat_number',
@@ -365,7 +401,8 @@ class zcObserverVatForEuCountries extends base
                 // Note: Can't just go off of the address_book_id value, since the same address
                 // might be used for both shipping and billing.
                 //
-                if ($GLOBALS['current_page_base'] === FILENAME_CHECKOUT_PROCESS) {
+                global $current_page_base;
+                if ($current_page_base === FILENAME_CHECKOUT_PROCESS) {
                     $this->addressLabelCount++;
                     if ($this->orderHasShippingAddress === true && $this->addressLabelCount < 3) {
                         return;
@@ -376,6 +413,77 @@ class zcObserverVatForEuCountries extends base
                 $p4 = array_merge($p4, ['entry_vat_number' => $vat_number, 'entry_vat_validated' => $vat_number_status]);
                 break;
 
+            // -----
+            // Issued during a template's html_header.php just before the CSS is output, enabling VAT4EU
+            // (for non-bootstrap templates **only**) to bring in its styling for the VAT formats modal.
+            //
+            // $p1 ... (r/o) Contains the $current_page_base.
+            //
+            case 'NOTIFY_HTML_HEAD_CSS_BEGIN':
+                $this->linkCatalogStylesheet('vat4eu.css', $p1);
+                break;
+
+            // -----
+            // Issued at the end of a template's common/tpl_main_page.php. Load the jQuery module to insert
+            // the VAT Number entry-field into an associated address-book entry. Note that this event is
+            // observed **only** on 'appropriate' pages.
+            //
+            case 'NOTIFY_FOOTER_END':
+                // -----
+                // If currently on the 'checkout_one' page and gathering information for a non-billing address,
+                // nothing further to be done.
+                //
+                global $which, $template, $current_page_base;
+
+                if ((isset($which) && $which !== 'bill') || (isset($_POST['which']) && $_POST['which'] !== 'bill')){
+                    return;
+                }
+
+                // -----
+                // Locate the 'define' file that contains the VAT4EU formatting modal's
+                // content. Check first to see if there's a template-override, otherwise, use
+                // the plugin's 'german' content.
+                //
+                $vat4eu_formats_define = zen_get_file_directory(
+                    DIR_FS_CATALOG . DIR_WS_LANGUAGES . $_SESSION['language'] . '/html_includes/',
+                    'define_popup_vat4eu_formats.php'
+                );
+                
+
+                // -----
+                // Determine whether we're on the OPC data-gathering page; if so, the "VAT Number" cannot be updated
+                // in that page's form (since OPC's jQuery doesn't recognize additional address-related fields
+                // at this time).  Add, instead, a message pointing the customer to the address-book page where they *can*
+                // provide a VAT Number update for the current order.
+                //
+                $form_field_disabled = '';
+                $form_field_message = '';
+                if (isset($which) || isset($_POST['which'])) {
+                    $form_field_disabled = ' disabled';
+                    $form_field_message = sprintf(VAT4EU_CHANGE_IN_ADDRESS_BOOK, zen_href_link(FILENAME_ADDRESS_BOOK_PROCESS, 'edit=' . $_SESSION['billto']));
+                }
+
+                // ----
+                // Retrieve the HTML to be inserted after any 'company' field-entry in the
+                // current form.
+                //
+                $vat_number = $this->getVatNumberForFormEntry($current_page_base ?? 'checkout_one');
+                $vat_number = (!empty($vat_number)) ? zen_output_string_protected($vat_number) : '';
+                $vat4eu_is_bootstrap = $this->isBootstrapTemplate;
+
+                ob_start();
+                require $template->get_template_dir('tpl_modules_vat4eu_display.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_vat4eu_display.php'; 
+                $vat_field_entry = ob_get_contents();
+                ob_end_clean();
+?>
+<script>
+    jQuery(function() {
+        jQuery('input[name="company"').prev('label').before(<?= json_encode($vat_field_entry) ?>);
+    });
+</script>
+<?php
+
+                break;
             default:
                 break;
         }
@@ -407,10 +515,14 @@ class zcObserverVatForEuCountries extends base
         global $messageStack;
 
         $vat_ok = false;
-        $vat_number = strtoupper(zen_db_prepare_input($_POST['vat_number']));
+        $vat_number = strtoupper(zen_db_prepare_input($_POST['vat_number'] ?? ''));
 
         $countries_id = $_POST['zone_country_id'];
         $country_iso_code_2 = $this->getCountryIsoCode2($countries_id);
+        if (!in_array($country_iso_code_2, $this->vatCountries)) {
+            $this->vatNumberStatus = VatValidation::VAT_OK;
+            return true;
+        }
 
         $this->vatNumberStatus = VatValidation::VAT_NOT_VALIDATED;
 
@@ -492,7 +604,7 @@ class zcObserverVatForEuCountries extends base
 
         $vat_is_refundable = false;
         $debug_message = "checkVatIsRefundable($customers_id, $address_id)\n";
-        if (zen_is_logged_in() && !zen_in_guest_checkout()) {
+        if ($this->nonGuestIsLoggedIn === true) {
             if ($customers_id === false) {
                 $customers_id = $_SESSION['customer_id'];
             }
@@ -562,7 +674,8 @@ class zcObserverVatForEuCountries extends base
         //
         if (defined('FILENAME_CHECKOUT_ONE')) {
             if ($current_page_base === FILENAME_CHECKOUT_ONE) {
-                if (($GLOBALS['which'] ?? '') === 'bill' || ($_POST['which'] ?? '') === 'bill') {
+                global $which;
+                if (($which ?? '') === 'bill' || ($_POST['which'] ?? '') === 'bill') {
                     $show_vat_number = true;
                 }
             } elseif ($current_page_base === FILENAME_CHECKOUT_ONE_CONFIRMATION) {
@@ -618,7 +731,8 @@ class zcObserverVatForEuCountries extends base
     {
         $vat_number = $_POST['vat_number'] ?? null;
         if ($current_page_base === FILENAME_ADDRESS_BOOK_PROCESS) {
-            $vat_number = $vat_number ?? $GLOBALS['entry']->fields['entry_vat_number'] ?? '';
+            global $entry;
+            $vat_number = $vat_number ?? $entry->fields['entry_vat_number'] ?? '';
         } elseif (defined('FILENAME_CHECKOUT_ONE') && $current_page_base === FILENAME_CHECKOUT_ONE) {
             [$vat_number, $vat_number_status] = $this->getCustomersVatNumber($_SESSION['customer_id'], $_SESSION['billto']);
         }

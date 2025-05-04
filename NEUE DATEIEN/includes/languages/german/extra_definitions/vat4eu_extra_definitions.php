@@ -3,12 +3,12 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Copyright (c) 2017-2025 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: vat4eu_extra_definitions.php 2024-03-06 20:49:16Z webchills $
+ * @version $Id: vat4eu_extra_definitions.php 2025-05-03 16:49:16Z webchills $
  */
 // If VAT4EU hasn't been installed in the admin or removed, don't process these
 // definitions since the missing constant will possibly result in a PHP Fatal error!
@@ -31,7 +31,7 @@ define('VAT4EU_DISPLAY_VAT_NUMBER', 'UID: ');
 // -----
 // These definitions are used by tpl_modules_vat4eu_display.php's link to the popup_vat4eu_formats page.
 //
-define('VAT4EU_WHATS_THIS', 'Info zur UID Eingabe');
+define('VAT4EU_MODAL_TITLE', 'Info zur UID Eingabe');
 define('VAT4EU_CHANGE_IN_ADDRESS_BOOK','Um die &quot;UID&quot; für diese Bestellung zu ändern, ändern Sie sie bitte in Ihrem <a href="%s">Adressbuch</a> und gehen Sie dann erneut zur Kasse.');
 
 define('VAT4EU_ENTRY_VAT_MIN_ERROR', 'Ihre <em>UID</em> muss mindestens ' . VAT4EU_MIN_LENGTH . ' Zeichen haben.');

@@ -1,167 +1,158 @@
-<div class="p-2">
-<p>Entering your VAT ID only makes sense if your company is located in an EU country outside the country of our store.</p>
-<p>Customers with a valid VAT ID will then have their taxes automatically deducted again by our store when they place an order.</p>
-<h1>VAT Identification Number Structure</h1>
-<p>These characters are used in the <em>Structure</em> column of the table below to illustrate the format required for the various <em>Member States</em>:</p>
-<ul>
-    <li>The <em>Format</em> excludes the 2-letter alpha prefix</li>
-    <li><b>9</b>: A digit</li>
-    <li><b>X</b>: A letter or a digit</li>
-    <li><b>S</b>: A letter, a digit, <b>+</b> or <b>*</b></li>
-    <li><b>L</b>: A letter</li>
-</ul>
+<p>The <em>Structure</em> column of the table below illustrates the format required for the various <em>Member States</em>, using <var>0-9</var> to represent digits and <var>X</var> to represent either a digit or a letter.</p>
+<p><b>Note:</b> The <em>Length</em> does not include the 2-character ISO code.</p>
 
-<table>
-    <tr>
-        <th>Member State</th>
-        <th>Structure</th>
-        <th>Format<sup>*</sup></th>
-    </tr>
-    <tr>
-        <td>AT-Austria</td>
-        <td>ATU99999999</td>
-        <td>1 block of 9 characters</td>
-    </tr>
-    <tr>
-        <td>BE-Belgium</td>
-        <td>BE0999999999</td>
-        <td>1 block of 10 digits</td>
-    </tr>
-    <tr>
-        <td>BG-Bulgaria</td>
-            <td>BG999999999 or<br>BG9999999999</td>
-            <td>1 block of 9 digits or<br>1 block of 10 digits</td>
+<table id="vat4eu-table" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Member State</th>
+            <th>Structure</th>
+            <th>Length</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Austria - AT</td>
+            <td>AT<b>U</b>12345678</td>
+            <td>9 characters<sup>1</sup></td>
         </tr>
         <tr>
-            <td>CY-Cyprus</td>
-            <td>CY99999999L</td>
-            <td>1 block of 9 characters</td>
+            <td>Belgium - BE</td>
+            <td>BE1234567890</td>
+            <td>10 digits<sup>2</sup></td>
         </tr>
         <tr>
-            <td>CZ-Czech Republic</td>
-            <td>CZ99999999 or<br>CZ999999999 or<br>CZ9999999999</td>
-        <td>1 block of either 8, 9 or 10 digits</td>
-    </tr>
-    <tr>
-        <td>DE-Germany</td>
-        <td>DE999999999</td>
-        <td>1 block of 9 digits</td>
-    </tr>
-    <tr>
-        <td>DK-Denmark</td>
-        <td>DK99 99 99 99</td>
-        <td>4 blocks of 2 digits</td>
-    </tr>
-    <tr>
-        <td>EE-Estonia</td>
-        <td>EE999999999</td>
-        <td>1 block of 9 digits</td>
-    </tr>
-    <tr>
-        <td>EL-Greece</td>
-        <td>EL999999999</td>
-        <td>1 block of 9 digits</td>
-    </tr>
-    <tr>
-        <td>ES-Spain</td>
-        <td>ESX9999999X<sup>4</sup></td>
-        <td>1 block of 9 characters</td>
-    </tr>
-    <tr>
-        <td>FI-Finland</td>
-        <td>FI99999999</td>
-        <td>1 block of 8 digits</td>
-    </tr>
-    <tr>
-        <td>FR-France</td>
-        <td>FRXX 999999999</td>
-        <td>1 block of 2 characters, 1 block of 9 digits</td>
-    </tr>
-    <tr>
-        <td>HR-Croatia</td>
-        <td>HR99999999999</td>
-        <td>1 block of 11 digits</td>
-    </tr>
-    <tr>
-        <td>HU-Hungary</td>
-        <td>HU99999999</td>
-        <td>1 block of 8 digits</td>
-    </tr>
-    <tr>
-        <td>IE-Ireland</td>
-            <td>IE9S99999L<br>IE9999999WI</td>
-            <td>1 block of 8 characters or<br>1 block of 9 characters</td>
+            <td>Bulgaria - BG</td>
+            <td>BG123456789<br>BG1234567890</td>
+            <td>9 or 10 digits</td>
         </tr>
         <tr>
-            <td>IT-Italy</td>
-            <td>IT99999999999</td>
-            <td>1 block of 11 digits</td>
+            <td>Croatia - HR</td>
+            <td>HR12345678901</td>
+            <td>11 digits</td>
         </tr>
         <tr>
-            <td>LT-Lithuania</td>
-            <td>LT999999999 or<br>LT999999999999</td>
-            <td>1 block of 9 digits or<br>1 block of 12 digits</td>
-    </tr>
-    <tr>
-        <td>LU-Luxembourg</td>
-        <td>LU99999999</td>
-        <td>1 block of 8 digits</td>
-    </tr>
-    <tr>
-        <td>LV-Latvia</td>
-        <td>LV99999999999</td>
-        <td>1 block of 11 digits</td>
-    </tr>
-    <tr>
-        <td>MT-Malta</td>
-        <td>MT99999999</td>
-        <td>1 block of 8 digits</td>
-    </tr>
-    <tr>
-        <td>NL-The Netherlands</td>
-        <td>NL999999999<b>B</b>99<sup>8</sup></td>
-        <td>1 block of 12 characters</td>
-    </tr>
-    <tr>
-        <td>PL-Poland</td>
-        <td>PL9999999999</td>
-        <td>1 block of 10 digits</td>
-    </tr>
-    <tr>
-        <td>PT-Portugal</td>
-        <td>PT999999999</td>
-        <td>1 block of 9 digits</td>
-    </tr>
-    <tr>
-        <td>RO-Romania</td>
-        <td>RO999999999</td>
-        <td>1 block of minimum 2 digits and maximum 10 digits</td>
-    </tr>
-    <tr>
-        <td>SE-Sweden</td>
-        <td>SE999999999999</td>
-        <td>1 block of 12 digits</td>
-    </tr>
-    <tr>
-        <td>SI-Slovenia</td>
-        <td>SI99999999</td>
-        <td>1 block of 8 digits</td>
-    </tr>
-    <tr>
-        <td>SK-Slovakia</td>
-        <td>SK9999999999</td>
-        <td>1 block of 10 digits</td>
-    </tr>
+            <td>Cyprus - CY</td>
+            <td>CY12345678L</td>
+            <td>9 characters</td>
+        </tr>
+        <tr>
+            <td>Czech Republic - CZ</td>
+            <td>CZ12345678<br>CZ123456789<br>CZ1234567890</td>
+            <td>8, 9 or 10 digits</td>
+        </tr>
+        <tr>
+            <td>Denmark - DK</td>
+            <td>DK12345678</td>
+            <td>8 digits</td>
+        </tr>
+        <tr>
+            <td>Estonia - EE</td>
+            <td>EE123456789</td>
+            <td>9 digits</td>
+        </tr>
+        <tr>
+            <td>Finland - FI</td>
+            <td>FI12345678</td>
+            <td>8 digits</td>
+        </tr>
+        <tr>
+            <td>France - FR</td>
+            <td>FR12345678901<br>FRX1234567890<br>FR1X234567890<br>FRXX123456789</td>
+            <td>11 characters<sup>3</sup></td>
+        </tr>
+        <tr>
+            <td>Germany - DE</td>
+            <td>DE999999999</td>
+            <td>9 digits</td>
+        </tr>
+        <tr>
+            <td>Greece - EL</td>
+            <td>EL123456789</td>
+            <td>9 digits</td>
+        </tr>
+        <tr>
+            <td>Hungary - HU</td>
+            <td>HU12345678</td>
+            <td>8 digits</td>
+        </tr>
+        <tr>
+            <td>Ireland - IE</td>
+            <td>IE1234567X<br>IE1X23456X<br>IE1234567XX</td>
+            <td>8 or 9 characters<sup>4</sup></td>
+        </tr>
+        <tr>
+            <td>Italy - IT</td>
+            <td>IT12345678901</td>
+            <td>11 digits</td>
+        </tr>
+        <tr>
+            <td>Latvia - LV</td>
+            <td>LV12345678901</td>
+            <td>11 digits</td>
+        </tr>
+        <tr>
+            <td>Lithuania - LT</td>
+            <td>LT123456789<br>LT123456789012</td>
+            <td>9 or 12 digits</td>
+        </tr>
+        <tr>
+            <td>Luxembourg - LU</td>
+            <td>LU12345678</td>
+            <td>8 digits</td>
+        </tr>
+        <tr>
+            <td>Malta - MT</td>
+            <td>MT12345678</td>
+            <td>8 digits</td>
+        </tr>
+        <tr>
+            <td>Netherlands - NL</td>
+            <td>NL123456789<b>B</b>01</td>
+            <td>12 characters<sup>5</sup></td>
+        </tr>
+        <tr>
+            <td>Poland - PL</td>
+            <td>PL1234567890</td>
+            <td>10 digits</td>
+        </tr>
+        <tr>
+            <td>Portugal - PT</td>
+            <td>PT123456789</td>
+            <td>9 digits</td>
+        </tr>
+        <tr>
+            <td>Romania - RO</td>
+            <td>RO12<br>RO123<br>RO1234<br>RO12345<br>RO123456<br>RO123456<br>RO1234567<br>RO12345678<br>RO123456789<br>RO1234567890</td>
+            <td>From 2 to 10 digits</td>
+        </tr>
+        <tr>
+            <td>Slovakia - SK</td>
+            <td>SK1234567890</td>
+            <td>10 digits</td>
+        </tr>
+        <tr>
+            <td>Slovenia - SI</td>
+            <td>SI12345678</td>
+            <td>8 digits</td>
+        </tr>
+        <tr>
+            <td>Spain - ES</td>
+            <td>ESX12345678<br>ES12345678X<br>ESX1234567X</td>
+            <td>9 characters<sup>6</sup></td>
+        </tr>
+        <tr>
+            <td>Sweden - SE</td>
+            <td>SE123456789012</td>
+            <td>12 digits</td>
+        </tr>
+    </tbody>
 </table>
-<p><strong>Notes:</strong></p>
-<ul id="vat4eu-notes">
+<p class="py-2"><strong>Notes:</strong></p>
+<ul id="vat4eu-notes" class="list-unstyled">
     <li><sup>1</sup> The 1st position following the prefix is always <b>U</b>.</li>
-    <li><sup>2</sup> The first digit following the prefix is always zero (<b>0</b>).</li>
-    <li><sup>3</sup> The (new) 10-digit format is the result of adding a leading zero to the (old) 9-digit format.</li>
-    <li><sup>4</sup> The first and last characters may be alpha or numeric; but they may not both be numeric.</li>
-    <li><sup>5</sup> Identifies branch traders.</li>
-    <li><sup>6</sup> Identifies Government Departments.</li>
-    <li><sup>7</sup> Identifies Health Authorities.</li>
-    <li><sup>8</sup> The 10th position following the prefix is always <b>B</b>.</li>
+    <li><sup>2</sup> If the customer provides a 9 digit VAT number, <b>0</b> should be added as a first digit.</li>
+    <li><sup>3</sup> Letters can be included as first and/or second character (except letters O and I).</li>
+    <li><sup>4</sup> Letters can be included as last, or second and last, or last 2 characters.</li>
+    <li><sup>5</sup> The 10th position following the prefix is always <b>B</b>.</li>
+    <li><sup>6</sup> The first and/or last character can be a letter.</li>
 </ul>
-</div>

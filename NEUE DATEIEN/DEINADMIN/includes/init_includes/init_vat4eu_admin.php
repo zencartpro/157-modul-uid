@@ -3,20 +3,20 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Copyright (c) 2017-2025 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_vat4eu_admin.php 2024-03-07 07:32:16Z webchills $
+ * @version $Id: init_vat4eu_admin.php 2025-05-03 07:32:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-define('VAT4EU_CURRENT_RELEASE', '3.2.1');
-define('VAT4EU_CURRENT_UPDATE_DATE', '2024-03-07');
+define('VAT4EU_CURRENT_RELEASE', '3.9.0');
+define('VAT4EU_CURRENT_UPDATE_DATE', '2025-05-04');
 
 define('VAT4EU_CURRENT_VERSION', VAT4EU_CURRENT_RELEASE . ': ' . VAT4EU_CURRENT_UPDATE_DATE);
 
