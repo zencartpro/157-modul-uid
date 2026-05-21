@@ -3,12 +3,12 @@
  * @package UID 
  * Zen Cart German Specific 
  * based on VAT4EU plugin by Cindy Merkin a.k.a. lat9 (cindy@vinosdefrutastropicales.com)
- * Copyright (c) 2017-2024 Vinos de Frutas Tropicales
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * Copyright (c) 2017-2026 Vinos de Frutas Tropicales
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: ot_vat_refund.php 2024-03-01 20:29:16Z webchills $
+ * @version $Id: ot_vat_refund.php 2026-05-21 20:29:16Z webchills $
  */
  
 if (!defined('IS_ADMIN_FLAG')) {
@@ -114,7 +114,7 @@ class ot_vat_refund extends base
             "INSERT INTO " . TABLE_CONFIGURATION_LANGUAGE . " 
                 (configuration_title, configuration_key, configuration_language_id, configuration_description, date_added) 
              VALUES 
-                ('Sortierreihenfolge', 'MODULE_ORDER_TOTAL_VAT_REFUND_SORT_ORDER', '43', 'Sortierreihenfolge in der Bestellzusammenfassung<br><br><b>Hinweis:</b> Achten Sie darauf, dass der Wert größer ist als die Sortierreihenfolge für die Anzeige der <em>Steuer</em><br><br>Voreisntellung: 900', now())"
+                ('Sortierreihenfolge', 'MODULE_ORDER_TOTAL_VAT_REFUND_SORT_ORDER', '43', 'Sortierreihenfolge in der Bestellzusammenfassung<br><br><b>Hinweis:</b> Achten Sie darauf, dass der Wert größer ist als die Sortierreihenfolge für die Anzeige der <em>Steuer</em><br><br>Voreinstellung: 900', now())"
         );   
     }
 

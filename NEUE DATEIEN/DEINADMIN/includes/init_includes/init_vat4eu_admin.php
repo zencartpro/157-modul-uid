@@ -8,15 +8,15 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: init_vat4eu_admin.php 2025-05-03 07:32:16Z webchills $
+ * @version $Id: init_vat4eu_admin.php 2026-05-21 16:32:16Z webchills $
  */
 
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-define('VAT4EU_CURRENT_RELEASE', '3.9.0');
-define('VAT4EU_CURRENT_UPDATE_DATE', '2025-05-04');
+define('VAT4EU_CURRENT_RELEASE', '4.0.3');
+define('VAT4EU_CURRENT_UPDATE_DATE', '2026-05-21');
 
 define('VAT4EU_CURRENT_VERSION', VAT4EU_CURRENT_RELEASE . ': ' . VAT4EU_CURRENT_UPDATE_DATE);
 
@@ -137,21 +137,36 @@ if (!isset($_SESSION['admin_id']) || (defined('VAT4EU_MODULE_VERSION') && VAT4EU
         // Add an entry to the address_book table that will hold the VAT Number associated with the address
         // and an indication as to whether that value is valid.
         //
+        
+        //check if entry_vat_number column already exists - if not add it
+    $sql ="SHOW COLUMNS FROM ".TABLE_ADDRESS_BOOK." LIKE 'entry_vat_number'";
+    $result = $db->Execute($sql);
+    if(!$result->RecordCount())
+    {
         $db->Execute(
             "ALTER TABLE " . TABLE_ADDRESS_BOOK . "
                ADD entry_vat_number varchar(32) DEFAULT NULL AFTER entry_company,
                ADD entry_vat_validated tinyint(1) NOT NULL default 0 AFTER entry_vat_number"
         );
-
-        // -----
+    }
+    
+    // -----
         // Add entries to the orders table that will hold the VAT Number associated with the order and its
         // validation status.
         //
-        $db->Execute(
+    
+//check if billing_vat_number column already exists - if not add it
+    $sql2 ="SHOW COLUMNS FROM ".TABLE_ORDERS." LIKE 'billing_vat_number'";
+    $result2 = $db->Execute($sql2);
+    if(!$result2->RecordCount())
+    {
+       $db->Execute(
             "ALTER TABLE " . TABLE_ORDERS . "
                ADD billing_vat_number varchar(32) NOT NULL DEFAULT '' AFTER billing_company,
                ADD billing_vat_validated tinyint(1) NOT NULL default 0 AFTER billing_vat_number"
         );
+    }       
+
 
         // -----
         // Display a message to the current admin, letting them know that the plugin's been installed.

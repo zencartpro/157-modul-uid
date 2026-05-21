@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>UID 3.9.0 für Zen-Cart 1.5.7j deutsch</title>
+<title>UID 4.0.3 für Zen-Cart 1.5.7k deutsch</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="content-language" content="de">
@@ -12,7 +12,7 @@
 <body>
 <div id="wrapper">
 <div id="header">
-<h1>UID 3.9.0 für Zen Cart 1.5.7j deutsch</h1>
+<h1>UID 4.0.3 für Zen Cart 1.5.7k deutsch</h1>
 </div>
 
 <div id="slidetabsmenu" style="display: none;">
@@ -64,8 +64,14 @@
     <br>
   </p>
 <h3>Copyright, Changelog, Lizenz</h3>
-<p>Anpassung des Moduls <a href="https://github.com/lat9/vat4eu" target="_blank">VAT Processing for European Countries (Vat4EU) </a> von lat9 für die deutsche Zen Cart Version 1.5.7j<br>
-  (c) 2022-2025 <a href="https://www.webchills.at" target="_blank">webchills</a><br>
+<p>Anpassung des Moduls <a href="https://github.com/lat9/vat4eu" target="_blank">VAT Processing for European Countries (Vat4EU) </a> von lat9 für die deutsche Zen Cart Version 1.5.7k<br>
+  (c) 2022-2026 <a href="https://www.webchills.at" target="_blank">webchills</a><br>
+  <br>
+  Changelog Version 4.0.3:<br>
+2026-05-21 webchills<br> 
+Anpassungen für 1.5.7k und PHP 8.4.x<br>
+keine Änderungen in Template Dateien mehr nötig
+<br>
   <br>
    Changelog Version 3.9.0:<br>
 2025-05-04 webchills<br> 
@@ -110,7 +116,7 @@ Fix für falsche Anzeige von UID Hinweisen bei Kunden ohne UID in includes/class
 <h2>Neuinstallation</h2>
 <h3>Voraussetzungen</h3>
   <br>
- <p>Dieses Modul ist<strong> nur für die deutsche Zen Cart 1.5.7j Version geeignet</strong> und ändert einige Corefiles.<br>
+ <p>Dieses Modul ist<strong> nur für die deutsche Zen Cart 1.5.7k Version geeignet</strong> und ändert einige Corefiles.<br>
 <strong> Erst in einem Testshop einspielen und nicht direkt in Ihrem Liveshop!</strong></p>
 <br>
 <p>Für den Einbau dieses Moduls sollten Sie über folgende Werkzeuge verfügen:<br>
@@ -137,11 +143,12 @@ BACKUP gemacht? Ok, dann weiterlesen...
 </div>
 <p>Die Installation erfolgt in folgenden Schritten. Halten Sie diesen Ablauf ein!</p>
 <p>1.<br>
-Im Ordner GEAENDERTE DATEIEN den Ordner includes/templates/DEINTEMPLATE auf das   im Shop verwendete Template umbennen (z.B.  responsive_classic).   <br>
-Wenn Sie Zen Cart 1.5.7j gerade frisch installiert haben und noch   keinerlei Änderungen an den Dateien vorgenommen haben, können Sie nun  alle Dateien/Ordner aus dem Ordner GEAENDERTE DATEIEN in der   vorgegebenen Struktur in die Zen Cart Installation hochladen. Dabei   werden dann 4 Dateien überschrieben.<br>
-Wenn Sie Zen Cart 1.5.7j schon länger im Einsatz haben und schon einmal   Änderungen an Dateien vorgenommen oder andere Module eingebaut haben,   dann laden Sie die Dateien keinesfalls einfach hoch. <br>
-Vergleichen Sie alle Dateien im Ordner GEAENDERTE DATEIEN mit den   entsprechenden Dateien in Ihrem Shop und nehmen Sie die Änderungen   manuell per WinMerge oder BeyondCompare vor.<br>
-Dann spielen Sie die geänderten Dateien in der gezeigten Struktur ein.</p>
+Im Ordner GEAENDERTE DATEIEN finden Sie eine angepasste includes/classes/class.rl_invoice3.php<br>
+Das ist die einzige Datei, die von diesem Modul geändert wird, um die UID auf der pdf Rechnung anzuzeigen.<br>
+Wenn Sie Zen Cart 1.5.7k gerade frisch installiert haben und noch   keinerlei Änderungen an den Dateien vorgenommen haben, können Sie die Datei in der vorgegebenen Struktur in die Zen Cart Installation hochladen. Dabei wird dann 1 Datei überschrieben.<br>
+Wenn Sie Zen Cart 1.5.7k schon länger im Einsatz haben und schon einmal Änderungen an Dateien vorgenommen oder andere Module eingebaut haben,   dann laden Sie die Datei keinesfalls einfach hoch. <br>
+Vergleichen Sie sie mit der entsprechenden Datei in Ihrem Shop und nehmen Sie die Änderungen   manuell per WinMerge oder BeyondCompare vor.<br>
+Dann spielen Sie die geänderten Datei in der gezeigten Struktur ein.</p>
 <p>2. <br>
 Im Ordner NEUE DATEIEN den   Ordner DEINADMIN auf den Namen Ihres admin Verzeichnisses   umbenennen.</p>
 <p>3.<br>
@@ -192,7 +199,7 @@ Durch Anklicken der Links &quot;Asc&quot; oder &quot;Desc&quot; für die Spalte 
 <p>Von VIES als ungültig eingestuft<br>
   <img src="images/deemed.jpg" width="21" height="21"  alt=""/></p>
 <p>9.<br>
-  Bei der Registrierung wird neben dem Eingabefeld für die UID ein Hilfe Link angezeigt. Anclicken öffnet ein Popup, das erklärt, welches Format die UIDs je nach Land haben müssen. Diese Informationen sind aktuell (Stand Mai 2025).<br>
+  Bei der Registrierung wird neben dem Eingabefeld für die UID ein Hilfe Link angezeigt. Anclicken öffnet ein Popup, das erklärt, welches Format die UIDs je nach Land haben müssen. Diese Informationen sind aktuell (Stand Mai 2026).<br>
   Der Inhalt dieser Hilfeseite kommt aus einer Define Page und kann über Tools &gt; Seiteneditor &gt; define_popup_vat4eu_formats bearbeitet werden.
 </p>
 </div>
@@ -211,8 +218,8 @@ Durch Anklicken der Links &quot;Asc&quot; oder &quot;Desc&quot; für die Spalte 
  Falls Sie dieses Modul in Version 2.7.3 und älter bereits in Ihrem Zen Cart 1.5.6 Shop verwendet haben und nun auf Zen Cart 1.5.7 aktualisiert haben, dann können Sie ihre bereits hinterlegten UIDs weiterverwenden, indem Sie sie in die neue Datenbankstruktur übernehmen</p>
 <p>Eine Anleitung dazu finden Sie in der Datei anleitung.txt im Ordner UID DATENUEBERNAHME AUS ALTEM MODUL.</p>
 <p><strong>WICHTIG:<br/>
-Bevor Sie diese Konvertierung durchführen installieren Sie zunächst ganz normal wie unter Neuinstallation beschrieben das Modul UID 3.9.0 für Zen Cart 1.5.7j deutsch in Ihrem bereits auf 1.5.7j aktualisierten Shop!</strong></p>
-<p>Sie haben also bereits einen funktionierenden auf 1.5.7j aktualisierten Shop mit dem neuen UID Modul 3.9.0. <br>
+Bevor Sie diese Konvertierung durchführen installieren Sie zunächst ganz normal wie unter Neuinstallation beschrieben das Modul UID 4.0.3 für Zen Cart 1.5.7k deutsch in Ihrem bereits auf 1.5.7k aktualisierten Shop!</strong></p>
+<p>Sie haben also bereits einen funktionierenden auf 1.5.7k aktualisierten Shop mit dem neuen UID Modul 4.0.3 <br>
   Nur unter Kunden > Kunden sind keinerlei bestehende UIDs vorhanden.</p>
 <p>Und die übernehmen Sie nun wie in der anleitung.txt beschrieben.</p>
 <p>Prüfen Sie auch, ob in Ihrer Shopinstallation noch irgendwo Relikte des alten Moduls sind, folgende Dateien sollten keinesfalls mehr vorhanden sein, falls sie vorhanden sind vom Server löschen:<br>
@@ -231,13 +238,10 @@ includes/languages/german/extra_definitions/vatmod.php<br>
 includes/languages/english/extra_definitions/uid.php<br>
 includes/languages/english/extra_definitions/vatmod.php<br>
 <br>
-Beachten Sie bitte auch, dass das neue Modul lediglich Änderungen in 4 bestehenden Dateien vornimmt:<br>
+Beachten Sie bitte auch, dass das neue Modul lediglich Änderungen in 1 bestehenden Datei vornimmt:<br>
 includes/classes/class.rl_invoice3.php<br>
-includes/templates/DEINTEMPLATE/templates/tpl_modules_address_book_details.php<br>
-includes/templates/DEINTEMPLATE/templates/tpl_modules_checkout_new_address.php<br>
-includes/templates/DEINTEMPLATE/templates/tpl_modules_create_account.php<br>
 <br>
-Das alte Modul hat sehr viele Dateien geändert, diese alten Dateiänderungen dürfen in Ihrem 1.5.7j Shop keinesfalls mehr vorhanden sein!
+Das alte Modul hat sehr viele Dateien geändert, diese alten Dateiänderungen dürfen in Ihrem 1.5.7k Shop keinesfalls mehr vorhanden sein!
 <br>
 Wenn Sie sich unsicher sind, laden Sie sich die alte Version 2.7.3 des UID Moduls für 1.5.6 herunter, dort finden Sie nochmal ausführlich beschrieben, welche Dateien dieses Modul früher mal geändert hat und wie diese Änderungen ausgesehen haben.<br>
 Download des alten Moduls:
@@ -277,7 +281,7 @@ Hinweis auf innergemeinschaftliche Lieferung (ot_vat_reverse_charges)</p>
 <p>2)<br>
   Alle von diesem Modul neu angelegten Dateien vom Server entfernen.</p>
 <p>3)<br>
-  Alle von diesem Modul geänderte Dateien wieder mit den 1.5.7j Originaldateien bzw. den Dateien Ihres zuvor angelegten Backups ersetzen.</p>
+  Alle von diesem Modul geänderte Dateien wieder mit den 1.5.7k Originaldateien bzw. den Dateien Ihres zuvor angelegten Backups ersetzen.</p>
 <p>4)<br>
   Die uninstall.sql im Ordner UNINSTALL mit einem Texteditor öffnen und den Inhalt kopieren.
   <br>
