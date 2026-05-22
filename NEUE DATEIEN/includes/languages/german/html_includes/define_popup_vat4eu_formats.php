@@ -69,7 +69,7 @@
     <tr>
         <td>ES-Spanien</td>
         <td>ESX9999999X</td>
-        <td>9 characters<sup>6</sup>
+        <td>9 Zeichen<sup>6</sup>
     </tr>
     <tr>
         <td>FI-Finnland</td>
