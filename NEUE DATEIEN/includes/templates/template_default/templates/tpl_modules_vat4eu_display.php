@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: tpl_modules_vat4eu_display.php 2026-05-21 16:19:16Z webchills $
+ * @version $Id: tpl_modules_vat4eu_display.php 2026-05-22 16:19:16Z webchills $
  */
  //
 // If not enabled or in an OPC guest-checkout, don't offer the entry of the VAT number.
@@ -47,7 +47,7 @@ $popup_link = '<a href="javascript:popupVat4EuWindow(\'' . zen_href_link(FILENAM
 <script>
 
 function popupVat4EuWindow(url) {
-    window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=500,height=320,screenX=150,screenY=150,top=150,left=150')
+    window.open(url,'popupWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no,width=700,height=700,screenX=150,screenY=150,top=150,left=150')
 }
 </script>
 <div class="clearBoth"></div>
